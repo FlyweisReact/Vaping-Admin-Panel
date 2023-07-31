@@ -1,13 +1,67 @@
 /** @format */
 
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Table, Modal, Form, Button } from "react-bootstrap";
 import HOC from "../layout/HOC";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const ESubCategory = () => {
+  const token = localStorage.getItem("AdminToken");
   const [modalShow, setModalShow] = React.useState(false);
+  const [subCat, setSubcat] = useState([]);
+  const getSubCategory = async()=>{
+    const url = "https://krish-vapes-backend.vercel.app/api/v1/SubCategory/all/SubCategoryForAdmin";
+    try{
+      const {data} = await axios.get(url);
+      console.log(data?.data);
+      setSubcat(data?.data);
+    }catch(err){
+      console.log(err.message);
+    }
+  }
+   useEffect(()=>{
+    getSubCategory();
+  },[])
 
   function MyVerticallyCenteredModal(props) {
+
+    const [name, setName] = useState("");
+    const [categoryId, setCategoryId] = useState("");
+
+    const [category, setCategory] = useState([]);
+
+    const getCategory = async()=>{  
+      try {
+        const { data } = await axios.get(
+          "https://krish-vapes-backend.vercel.app/api/v1/Category/allCategory"
+        );
+        setCategory(data?.data);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    useEffect(()=>{
+      getCategory()
+    },[])
+
+    const handleSubmit = async(e)=>{
+      e.preventDefault();
+      const url = "https://krish-vapes-backend.vercel.app/api/v1/SubCategory/addSubcategory";
+      try{
+        const {data} = await axios.post(url,{
+          name, categoryId
+        },{
+          headers:{Authorization : `Bearer ${token}`}
+        })
+        toast.success(`Sub Category Added Successfully`);
+        getSubCategory()
+      }catch(err){
+        console.log(err?.message);
+      }
+    }
+
     return (
       <Modal
         {...props}
@@ -22,20 +76,22 @@ const ESubCategory = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3">
-              <Form.Label>Image</Form.Label>
-              <Form.Control type="file" required />
-            </Form.Group>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
-              <Form.Control type="text" required />
+              <Form.Control type="text" required onChange={(e)=>setName(e.target.value)} />
             </Form.Group>
-            <Form.Select aria-label="Default select example" className="mb-3">
+            <Form.Select aria-label="Default select example" className="mb-3" onChange={(e)=>setCategoryId(e.target.value)}>
               <option>--select parent category--</option>
-              <option></option>
+              {
+                category?.map((ele,i)=>(
+                  <>
+                    <option value={ele?._id}>{ele?.name}</option>
+                  </>
+                ))
+              }
             </Form.Select>
-            <Button variant="outline-success" type="submit">
+            <Button variant="outline-success" type="submit" >
               Submit
             </Button>
           </Form>
@@ -43,6 +99,13 @@ const ESubCategory = () => {
       </Modal>
     );
   }
+
+  const [query, setQuery] = useState("");
+
+  const searchData = !query ? subCat :
+    subCat?.filter((ele,i)=>{
+      return ele?.name?.toLowerCase()?.includes(query?.toLowerCase());
+    })
 
   return (
     <>
@@ -79,6 +142,7 @@ const ESubCategory = () => {
           <input
             type="search"
             placeholder="Start typing to search "
+            onChange={(e)=>setQuery(e.target.value)}
           />
         </div>
 
@@ -89,26 +153,27 @@ const ESubCategory = () => {
               <th>Sno.</th>
               <th>Name</th>
               <th>Parent Category</th>
-              <th>Added By</th>
+              <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-            <td>#1</td>
-              <td>
-              <span className="flexCont">
-                      <img      src="https://img.staticmb.com/mbcontent/images/uploads/2022/11/importance-for-vastu-for-home.jpg" alt="" />
-                      <p> Demo </p>
-                    </span>
-           
-              </td>
-              <td>Demo</td>
-              <td>John</td>
-              <td>
-                <i className="fa-solid fa-trash" />
-              </td>
-            </tr>
+            {
+              searchData?.map((ele,i)=>(
+                <>
+                  <tr>
+                    <td>{i+1}</td>
+                    <td>{ele?.name}</td>
+                    <td>{ele?.categoryId?.name}</td>
+                    <td>{ele?.status}</td>
+                    <td>
+                      <i className="fa-solid fa-trash" />
+                    </td>
+                  </tr>    
+                </>
+              ))
+            }
+
           </tbody>
         </Table>
         </div>

@@ -15,23 +15,40 @@ const Sidebar = ({ hamb, setHamb }) => {
       link: "/dashboard ",
       name: "Dashboard",
     },
-    {
-      icon: <i className="fa-solid fa-user text-xl mr-3 rounded-full"></i>,
-      link: "/Admin",
-      name: "Admin",
-    },
-    {
-      icon: (
-        <i className="fa-solid fa-cart-shopping text-xl mr-3 rounded-full"></i>
-      ),
-      link: "/Customer",
-      name: "Customers",
-    },
+    // {
+    //   icon: <i className="fa-solid fa-user text-xl mr-3 rounded-full"></i>,
+    //   link: "/Admin",
+    //   name: "Admin",
+    // },
+    // {
+    //   icon: (
+    //     <i className="fa-solid fa-cart-shopping text-xl mr-3 rounded-full"></i>
+    //   ),
+    //   link: "/Customer",
+    //   name: "Customers",
+    // },
     // {
     //   icon: <i className="fa-solid fa-user-tie text-xl mr-3 rounded-full"></i>,
     //   link: "/VendorList",
     //   name: "Vendors",
     // },
+      {
+      icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
+      link: "/Category",
+      name: "Category",
+    },
+    {
+      icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
+      link: "/SubCategory",
+      name: "Sub-Category",
+    },
+    {
+      icon: (
+        <i className="fa-solid fa-cart-shopping text-xl mr-3 rounded-full"></i>
+      ),
+      link: "/Orders",
+      name: "Orders Management",
+    },
     {
       icon: (
         <i className="fa-brands fa-product-hunt text-xl mr-3 rounded-full"></i>
@@ -39,17 +56,6 @@ const Sidebar = ({ hamb, setHamb }) => {
       link: "/Product",
       name: "Products",
     },
-    {
-      icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
-      link: "/Category",
-      name: "Category",
-    },
-
-    // {
-    //   icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
-    //   link: "/SubCategory",
-    //   name: "Sub-Category",
-    // },
     {
       icon: <i className="fa-solid fa-user text-xl mr-3 rounded-full"></i>,
       link: "/pushNotification",
@@ -76,13 +82,7 @@ const Sidebar = ({ hamb, setHamb }) => {
       link: "/Support",
       name: "Suppport",
     },
-    {
-      icon: (
-        <i className="fa-solid fa-cart-shopping text-xl mr-3 rounded-full"></i>
-      ),
-      link: "/Orders",
-      name: "Orders Management",
-    },
+
 
     {
       icon: <i className="fa-solid fa-user-tie text-xl mr-3 rounded-full"></i>,
