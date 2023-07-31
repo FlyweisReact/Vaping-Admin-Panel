@@ -12,7 +12,7 @@ const Navbar = ({ hamb, setHamb }) => {
             ? "flex  w-full justify-between  my-1 rounded-sm  p-4 py-3 shadow-md items-center  bg-slate-200 space-x-4"
             : "flex  w-full justify-between my-1 rounded-sm  p-4 py-3 shadow-md items-center  bg-slate-200 space-x-4"
         }
-        style={{ backgroundColor: "#0c0c0c" }}
+        style={{ backgroundColor: "#19376d" }}
       >
         <RiMenu4Line
           onClick={() => setHamb(!hamb)}

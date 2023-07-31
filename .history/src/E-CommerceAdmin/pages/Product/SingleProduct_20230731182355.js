@@ -133,7 +133,6 @@ const SingleProduct = () => {
 
                     <i
                       className="fa-solid fa-plus"
-                      onClick={() => setModalShow(true)}
                       style={{ cursor: "pointer" }}
                     ></i>
                   </div>

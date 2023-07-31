@@ -51,7 +51,7 @@ const Sidebar = ({ hamb, setHamb }) => {
     <>
       <aside
         className="p-4 h-auto"
-        style={{ backgroundColor: "#0c0c0c", minHeight: "100vh" }}
+        style={{ backgroundColor: "#bc0032", minHeight: "100vh" }}
       >
         {/* Top */}
         <div className="w-full md:hidden relative  p-2 mb-4">

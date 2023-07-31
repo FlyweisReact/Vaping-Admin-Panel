@@ -15,8 +15,8 @@ const Sidebar = ({ hamb, setHamb }) => {
       link: "/dashboard ",
       name: "Dashboard",
     },
-
-    {
+   
+      {
       icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
       link: "/Category",
       name: "Category",
@@ -40,10 +40,11 @@ const Sidebar = ({ hamb, setHamb }) => {
       link: "/Product",
       name: "Products",
     },
+
   ];
 
   const logOut = () => {
-    localStorage.clear();
+    localStorage.clear()
     navigate("/");
   };
 
@@ -51,7 +52,7 @@ const Sidebar = ({ hamb, setHamb }) => {
     <>
       <aside
         className="p-4 h-auto"
-        style={{ backgroundColor: "#0c0c0c", minHeight: "100vh" }}
+        style={{ backgroundColor: "#f12b2b", minHeight: "100vh" }}
       >
         {/* Top */}
         <div className="w-full md:hidden relative  p-2 mb-4">
