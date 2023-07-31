@@ -50,7 +50,6 @@ function App() {
         <Route path="/order/:id" element={<SingleOrder />} />
         <Route path="/create-product" element={<CreateProduct />} />
         <Route path="/product/:id" element={<SingleProduct />} />
-        <Route path="/SubCategory" element={<ESubCategory />} />
         <Route path="/edit-product/:id" element={<EditProduct />} />
 
 
@@ -62,6 +61,7 @@ function App() {
         <Route path="/coupon" element={<Coupon />} />
         <Route path="/getMeThis" element={<GetMeThis />} />
         <Route path="/Support" element={<EAdminDelivery />} />
+        <Route path="/SubCategory" element={<ESubCategory />} />
         <Route path="/VendorList" element={<EVendorList />} />
         <Route
           path="/E-Commerce/Admin/Product/:id"

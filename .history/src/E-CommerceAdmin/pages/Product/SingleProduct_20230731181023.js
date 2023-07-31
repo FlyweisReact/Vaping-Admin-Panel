@@ -85,13 +85,7 @@ const SingleProduct = () => {
                   >
                     <ul style={{ listStyle: "disc" }}>
                       {i.colorSize?.map((item) => (
-                        <li key={item._id}>
-                          {" "}
-                          {item.size }{" "}
-                          {item.quantity
-                            ? ` , Quantity  : ${item.quantity}`
-                            : ""}{" "}
-                        </li>
+                        <li key={item._id}> {item.size} {item.quantity ? `, ${quantity}`} </li>
                       ))}
                     </ul>
                   </div>

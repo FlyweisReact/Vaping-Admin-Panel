@@ -16,7 +16,7 @@ const SingleProduct = () => {
     try {
       const response = await axios.get(`${BaseUrl}api/v1/Product/${id}`);
       setData(response.data.data);
-      console.log(response.data.data);
+      console.log(response.data.data)
     } catch (e) {
       console.log(e);
     }
@@ -65,39 +65,22 @@ const SingleProduct = () => {
           {ValueChecker(data?.tax, "Tax")}
           {ValueChecker(data?.ratings, "Ratings")}
 
-          {data?.colors
-            ? data?.colors?.map((i) => (
-                <Form.Group className="mb-3">
-                  <Form.Label>Colors </Form.Label>
-
-                  <Form.Control
-                    placeholder={i.color}
-                    disabled
-                    className="mt-2"
-                    key={i._id}
-                  />
-                  <div
-                    style={{
-                      backgroundColor: "#e9ecef",
-                      width: "100%",
-                      marginTop: "10px",
-                    }}
-                  >
-                    <ul style={{ listStyle: "disc" }}>
-                      {i.colorSize?.map((item) => (
-                        <li key={item._id}>
-                          {" "}
-                          {item.size }{" "}
-                          {item.quantity
-                            ? ` , Quantity  : ${item.quantity}`
-                            : ""}{" "}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </Form.Group>
+          {data?.colors ? (
+            data?.colors?.map((i) => (
+            <Form.Group className="mb-3">
+              <Form.Label>Colors </Form.Label>
+              
+                <Form.Control
+                  placeholder={i.color}
+                  disabled
+                  className="mt-2"
+                  key={i._id}
+                />
               ))
-            : ""}
+            </Form.Group>
+          ) : (
+            ""
+          )}
 
           {ValueChecker(data?.createdAt?.slice(0, 10), "Created At")}
 

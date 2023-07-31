@@ -40,7 +40,50 @@ const Sidebar = ({ hamb, setHamb }) => {
       link: "/Product",
       name: "Products",
     },
+    {
+      icon: <i className="fa-solid fa-user text-xl mr-3 rounded-full"></i>,
+      link: "/pushNotification",
+      name: "Push Notification",
+    },
 
+
+    {
+      icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
+      link: "/coupon",
+      name: "Coupon",
+    },
+    {
+      icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
+      link: "/getMeThis",
+      name: "Get Me This",
+    },
+    {
+      icon: <i className="fa-solid fa-truck  text-xl mr-3 rounded-full"></i>,
+      link: "/Support",
+      name: "Suppport",
+    },
+
+
+    {
+      icon: <i className="fa-solid fa-user-tie text-xl mr-3 rounded-full"></i>,
+      link: "/privacy",
+      name: "Privacy Policy",
+    },
+    {
+      icon: <i className="fa-solid fa-user-tie text-xl mr-3 rounded-full"></i>,
+      link: "/terms",
+      name: "Terms&Condition",
+    },
+    // {
+    //   icon: <i className="fa-solid fa-user-tie text-xl mr-3 rounded-full"></i>,
+    //   link: "/helpSupport",
+    //   name: "Help and Support",
+    // },
+    {
+      icon: <i className="fa-solid fa-user-tie text-xl mr-3 rounded-full"></i>,
+      link: "/complaints",
+      name: "Help and Support",
+    },
   ];
 
   const logOut = () => {

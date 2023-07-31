@@ -50,7 +50,6 @@ function App() {
         <Route path="/order/:id" element={<SingleOrder />} />
         <Route path="/create-product" element={<CreateProduct />} />
         <Route path="/product/:id" element={<SingleProduct />} />
-        <Route path="/SubCategory" element={<ESubCategory />} />
         <Route path="/edit-product/:id" element={<EditProduct />} />
 
 

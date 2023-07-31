@@ -87,10 +87,8 @@ const SingleProduct = () => {
                       {i.colorSize?.map((item) => (
                         <li key={item._id}>
                           {" "}
-                          {item.size }{" "}
-                          {item.quantity
-                            ? ` , Quantity  : ${item.quantity}`
-                            : ""}{" "}
+                          {item.size}{" "}
+                          {item.quantity ? ` , Quantity , ${item.quantity}` : ""}{" "}
                         </li>
                       ))}
                     </ul>

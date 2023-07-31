@@ -76,25 +76,9 @@ const SingleProduct = () => {
                     className="mt-2"
                     key={i._id}
                   />
-                  <div
-                    style={{
-                      backgroundColor: "#e9ecef",
-                      width: "100%",
-                      marginTop: "10px",
-                    }}
-                  >
-                    <ul style={{ listStyle: "disc" }}>
-                      {i.colorSize?.map((item) => (
-                        <li key={item._id}>
-                          {" "}
-                          {item.size }{" "}
-                          {item.quantity
-                            ? ` , Quantity  : ${item.quantity}`
-                            : ""}{" "}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <span style={{backgroundColor : "#e9ecef"}} >
+                    {}
+                  </span>
                 </Form.Group>
               ))
             : ""}
