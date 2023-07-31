@@ -97,7 +97,14 @@ const Login = () => {
               "LOG IN"
               )}
             </button>
-          
+            {/* <br /> */}
+            {/* <button
+              type="button"
+              onClick={() => navigate("/Vendorlogin")}
+              className="EcommerceVendorLogin  "
+            >
+              E-Commerce Vendor Panel
+            </button> */}
           </section>
         </form>
       </div>

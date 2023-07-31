@@ -122,15 +122,14 @@ html {
   background: linear-gradient(to left, #0c0c0c 50%, #fff 50%) right;
   background-size: 200%;
   transition: 0.5s ease-out;
-  border: 2px solid #0c0c0c;
+  border: 1px solid #0c0c0c;
   margin-top: 10px;
   text-transform: uppercase;
 }
 
 .EcommerceAdminLogin:hover {
   background-position: left;
-  color: #0c0c0c;
-  font-weight: bold;
+  color: #19376d;
 }
 .EcommerceVendorLogin {
   color: #fff;
