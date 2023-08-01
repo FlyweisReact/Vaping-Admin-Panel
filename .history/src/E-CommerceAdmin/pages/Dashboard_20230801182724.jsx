@@ -20,6 +20,8 @@ const Dashboard = () => {
         "https://krish-vapes-backend.vercel.app/api/v1/Category/allCategory"
       );
       setAdminCount(data.data.length);
+      setUserCount(data.users?.filter((i) => i?.role.includes("user")));
+     
     } catch (e) {
       console.log(e);
     }
@@ -28,9 +30,9 @@ const Dashboard = () => {
   const fetchCategory = async () => {
     try {
       const { data } = await axios.get(
-        "https://krish-vapes-backend.vercel.app/api/v1/admin/getAllUser"
+        "http://ec2-65-1-248-95.ap-south-1.compute.amazonaws.com:8886/api/category"
       );
-      setCategoryCount(data.data.length);
+      setCategoryCount(data.categories.length);
     } catch (e) {
       console.log(e);
     }
@@ -39,9 +41,9 @@ const Dashboard = () => {
   const fetchProduct = async () => {
     try {
       const { data } = await axios.get(
-      `https://krish-vapes-backend.vercel.app/api/v1/Product/all/paginateProductSearch`
+        "http://ec2-65-1-248-95.ap-south-1.compute.amazonaws.com:8886/api/product/"
       );
-      setProductCount(data.data.total);
+      setProductCount(data.stats.ProducData.length);
     } catch (e) {
       console.log(e);
     }
@@ -49,10 +51,10 @@ const Dashboard = () => {
 
   const fetchOrder = async () => {
     try {
-      const response = await axios.get(
-        "https://krish-vapes-backend.vercel.app/api/v1/admin/paginate/OrdersSearch"
+      const { data } = await axios.get(
+        "http://ec2-65-1-248-95.ap-south-1.compute.amazonaws.com:8886/api/order"
       );
-      setOrderCount(response.data.data.total);
+      setOrderCount(data.orders.length);
     } catch (e) {
       console.log(e);
     }
@@ -68,11 +70,24 @@ const Dashboard = () => {
   const card = [
     {
       progress: "bg-green-400",
-      title: "All Category",
-      number: adminCount,
+      title: "Total Users",
+      number: userCount?.length,
+      icon: (
+        <i
+          className="fa-solid fa-user text-2xl"
+          style={{ color: "#4099ff" }}
+        ></i>
+      ),
+      bg: "#4099ff",
+      link: "/Customer",
+    },
+    {
+      progress: "bg-green-400",
+      title: "All Admin",
+      number: adminCount?.length,
       icon: <FiUser className="text-2xl text-[#29cccc]" />,
       bg: "#29cccc",
-      link: "/Category",
+      link: "/Admin",
     },
     {
       progress: "bg-green-400",
@@ -84,11 +99,11 @@ const Dashboard = () => {
     },
     {
       progress: "bg-green-400",
-      title: "All User",
+      title: "All category",
       number: categoryCount,
       icon: <i className=" fa-brands fa-slack text-2xl text-[#64878e]"></i>,
       bg: "#64878e",
-      link: "/user",
+      link: "/Category",
     },
   
     {

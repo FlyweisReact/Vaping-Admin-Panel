@@ -88,7 +88,7 @@ const Dashboard = () => {
       number: categoryCount,
       icon: <i className=" fa-brands fa-slack text-2xl text-[#64878e]"></i>,
       bg: "#64878e",
-      link: "/user",
+      link: "/Category",
     },
   
     {

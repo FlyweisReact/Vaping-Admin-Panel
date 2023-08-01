@@ -49,10 +49,10 @@ const Dashboard = () => {
 
   const fetchOrder = async () => {
     try {
-      const response = await axios.get(
-        "https://krish-vapes-backend.vercel.app/api/v1/admin/paginate/OrdersSearch"
+      const { data } = await axios.get(
+        "http://ec2-65-1-248-95.ap-south-1.compute.amazonaws.com:8886/api/order"
       );
-      setOrderCount(response.data.data.total);
+      setOrderCount(data.orders.length);
     } catch (e) {
       console.log(e);
     }
@@ -68,11 +68,24 @@ const Dashboard = () => {
   const card = [
     {
       progress: "bg-green-400",
+      title: "Total Users",
+      number: userCount?.length,
+      icon: (
+        <i
+          className="fa-solid fa-user text-2xl"
+          style={{ color: "#4099ff" }}
+        ></i>
+      ),
+      bg: "#4099ff",
+      link: "/Customer",
+    },
+    {
+      progress: "bg-green-400",
       title: "All Category",
       number: adminCount,
       icon: <FiUser className="text-2xl text-[#29cccc]" />,
       bg: "#29cccc",
-      link: "/Category",
+      link: "/Admin",
     },
     {
       progress: "bg-green-400",
@@ -88,7 +101,7 @@ const Dashboard = () => {
       number: categoryCount,
       icon: <i className=" fa-brands fa-slack text-2xl text-[#64878e]"></i>,
       bg: "#64878e",
-      link: "/user",
+      link: "/Category",
     },
   
     {
