@@ -43,6 +43,13 @@ const Sidebar = ({ hamb, setHamb }) => {
       icon: (
         <i className="fa-solid fa-address-card text-xl mr-3 rounded-full" />
       ),
+      link: "/banner",
+      name: "Banner",
+    },
+    {
+      icon: (
+        <i className="fa-solid fa-address-card text-xl mr-3 rounded-full" />
+      ),
       link: "/about-us",
       name: "About Us",
     },
@@ -67,13 +74,13 @@ const Sidebar = ({ hamb, setHamb }) => {
       link: "/user",
       name: "All User",
     },
-    // {
-    //   icon: (
-    //     <i className="fa-solid fa-user  text-xl mr-3 rounded-full"></i>
-    //   ),
-    //   link: "/getblog",
-    //   name: "All Blogs",
-    // },
+    {
+      icon: (
+        <i className="fa-solid fa-user  text-xl mr-3 rounded-full"></i>
+      ),
+      link: "/getblog",
+      name: "All Blogs",
+    }
   ];
 
   const logOut = () => {

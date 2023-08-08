@@ -24,11 +24,11 @@ const Order = () => {
   const getOrders = async () => {
     try {
       const response = await axios.get(
-        `${BaseUrl}api/v1/admin/paginate/OrdersSearch?search=${query}&page=${page}&limit=10`,
-        Auth
+        `${BaseUrl}api/v1/admin/paginateAllOrdersSearch/OrdersSearch?search=${query}&page=${page}&limit=10`
       );
       setData(response.data.data.docs);
       setTotal(response.data.data.total);
+      console.log(response.data.data.total);
     } catch (err) {
       console.log(err);
     }
@@ -116,10 +116,6 @@ const Order = () => {
                     <tr>
                       <th>No.</th>
                       <th>Order Id</th>
-                      <th>full name</th>
-                      <th>Product Name</th>
-                      <th>Product Price</th>
-                      <th>Quantity</th>
                       <th>Total Price</th>
                       <th>Order Status</th>
                       <th>Payment Status</th>
@@ -131,11 +127,7 @@ const Order = () => {
                       <tr key={index}>
                         <td> #{index + 1} </td>
                         <td> {i.orderId} </td>
-                        <td> {i.userId?.fullName} </td>
-                        <td> {i.productId?.name} </td>
-                        <td> £{i.productPrice} </td>
-                        <td> {i.quantity} </td>
-                        <td> £{i.total} </td>
+                        <td> {i?.paidAmount} </td>
                         <td>
                           {" "}
                           <Badge>{i.orderStatus}</Badge>{" "}

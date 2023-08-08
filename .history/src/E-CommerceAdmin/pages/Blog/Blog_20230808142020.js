@@ -57,7 +57,7 @@ const Blog = () => {
           Auth
         );
         toast.success(data.message);
-        fetchData();
+
         props.onHide();
       } catch (e) {
         console.log(e);
@@ -78,7 +78,6 @@ const Blog = () => {
         );
         toast.success(data.message);
         props.onHide();
-        fetchData();
       } catch (e) {
         console.log(e);
       }

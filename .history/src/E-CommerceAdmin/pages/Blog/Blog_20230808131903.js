@@ -57,7 +57,7 @@ const Blog = () => {
           Auth
         );
         toast.success(data.message);
-        fetchData();
+
         props.onHide();
       } catch (e) {
         console.log(e);
@@ -72,13 +72,12 @@ const Blog = () => {
       fd.append("desc", desc);
       try {
         const { data } = await axios.put(
-          `https://krish-vapes-backend.vercel.app/api/v1/Blog/updateBlog/${id}`,
+          `https://krish-vapes-backend.vercel.app/api/v1//Blog/updateBlog/${id}`,
           fd,
           Auth
         );
         toast.success(data.message);
         props.onHide();
-        fetchData();
       } catch (e) {
         console.log(e);
       }

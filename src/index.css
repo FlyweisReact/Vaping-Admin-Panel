@@ -498,3 +498,88 @@ html {
   gap: 10px;
   justify-content: center;
 }
+
+/* ============== user data styling =========*/
+
+.ud2 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.ud3 {
+  width: 49%;
+}
+.ud4 {
+  width: 49%;
+}
+
+.ud3 button {
+  background: rgb(21, 226, 21);
+  width: 50%;
+  height: 40px;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+}
+
+.ud4 button {
+  background: #c44b3f;
+  width: 50%;
+  height: 40px;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+}
+
+/* ============ single order styling ================*/
+
+.so2 {
+  margin-left: 5%;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.so4 {
+  display: flex;
+  justify-content: space-between;
+}
+.so4 p {
+  margin: 0;
+}
+
+.so5 {
+  margin-top: 20px;
+  width: 98;
+  margin-left: 1%;
+}
+
+.so5 table {
+  width: 100%;
+}
+.so5 table th,
+td {
+  font-size: 13px;
+  font-weight: 600;
+}
+.so6 {
+  margin-top: 40px;
+  margin-left: 65%;
+  width: 30%;
+}
+
+.so7 {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+.so7 p {
+  margin: 0;
+}
+
+.downloadBtn {
+  background: #0cba73;
+  height: 40px;
+  width: 15%;
+  color: #fff;
+  border-radius: 4px;
+}

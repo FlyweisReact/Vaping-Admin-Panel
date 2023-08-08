@@ -57,7 +57,7 @@ const Blog = () => {
           Auth
         );
         toast.success(data.message);
-        fetchData();
+
         props.onHide();
       } catch (e) {
         console.log(e);
@@ -72,13 +72,12 @@ const Blog = () => {
       fd.append("desc", desc);
       try {
         const { data } = await axios.put(
-          `https://krish-vapes-backend.vercel.app/api/v1/Blog/updateBlog/${id}`,
+          `https://krish-vapes-backend.vercel.app/api/v1//Blog/updateBlog/${id}`,
           fd,
           Auth
         );
         toast.success(data.message);
         props.onHide();
-        fetchData();
       } catch (e) {
         console.log(e);
       }
@@ -172,7 +171,7 @@ const Blog = () => {
         </span>
         <div className="d-flex gap-1">
           <button
-            className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#0c0c0c] text-white tracking-wider"
+            className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#19376d] text-white tracking-wider"
             onClick={() => setModalShow(true)}
           >
             Add Blog
@@ -210,7 +209,7 @@ const Blog = () => {
                         </td>
 
                         <td> {i.title} </td>
-                        <td>{i.description}</td>
+                        <td>£{i.description}</td>
                         <td>
                           <span className="flexCont">
                             <i

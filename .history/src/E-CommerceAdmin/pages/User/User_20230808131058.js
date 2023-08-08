@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import axios from "axios";
 import SpinnerComp from "../Component/SpinnerComp";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const User = () => {
   const [data, setData] = useState([]);
@@ -43,7 +43,7 @@ const User = () => {
         `https://krish-vapes-backend.vercel.app/api/v1/admin/${id}`,
         Auth
       );
-      toast.success("User Deleted");
+      toast.success("User Deleted")
       fetchData();
     } catch (e) {
       const msg = e.response.data.message;
@@ -101,14 +101,13 @@ const User = () => {
                         <td>{i.status}</td>
                         <td>
                           <span className="flexCont">
-                            <i
-                              className="fa-solid fa-eye"
-                              onClick={() => navigate(`/user-data/${i._id}`)}
-                            ></i>
-                            <i
-                              className="fa-sharp fa-solid fa-trash"
-                              onClick={() => deleteHandler(i._id)}
-                            ></i>
+                          <i className="fa-solid fa-eye" 
+                            onClick={()=>navigate(`/user-data/${i._id}`)}
+                          ></i>
+                          <i
+                            className="fa-sharp fa-solid fa-trash"
+                            onClick={() => deleteHandler(i._id)}
+                          ></i>
                           </span>
                         </td>
                       </tr>

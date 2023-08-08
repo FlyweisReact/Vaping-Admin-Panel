@@ -1,15 +1,16 @@
-/** @format */
-
 import React, { useEffect, useState } from "react";
 import HOC from "../../layout/HOC";
-import { Table, Alert, Modal, Button, Form } from "react-bootstrap";
+import { Table,  Alert, Modal, Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import axios from "axios";
 import SpinnerComp from "../Component/SpinnerComp";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
+  const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [id, setId] = useState(null);
   const [edit, setEdit] = useState(false);
@@ -34,9 +35,19 @@ const Blog = () => {
     }
   };
 
+
+  const getImageLink = (item) => {
+    if (item?.colorActive === true) {
+      return item?.colors?.[0]?.img;
+    } else {
+      return item?.img;
+    }
+  };
+
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [page, query]);
+
 
   function MyVerticallyCenteredModal(props) {
     const [image, setImage] = useState("");
@@ -57,7 +68,7 @@ const Blog = () => {
           Auth
         );
         toast.success(data.message);
-        fetchData();
+
         props.onHide();
       } catch (e) {
         console.log(e);
@@ -72,13 +83,12 @@ const Blog = () => {
       fd.append("desc", desc);
       try {
         const { data } = await axios.put(
-          `https://krish-vapes-backend.vercel.app/api/v1/Blog/updateBlog/${id}`,
+          `https://krish-vapes-backend.vercel.app/api/v1//Blog/updateBlog/${id}`,
           fd,
           Auth
         );
         toast.success(data.message);
         props.onHide();
-        fetchData();
       } catch (e) {
         console.log(e);
       }
@@ -153,6 +163,7 @@ const Blog = () => {
 
   return (
     <>
+
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
@@ -171,12 +182,11 @@ const Blog = () => {
           All Blog's ( Total : {total} )
         </span>
         <div className="d-flex gap-1">
-          <button
-            className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#0c0c0c] text-white tracking-wider"
-            onClick={() => setModalShow(true)}
-          >
-            Add Blog
-          </button>
+            <button className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#19376d] text-white tracking-wider"
+              onClick={()=>setModalShow(true)}
+            >
+              Add Blog
+            </button>
         </div>
       </div>
 
@@ -185,6 +195,8 @@ const Blog = () => {
           <SpinnerComp />
         ) : (
           <>
+          
+
             <div className="overFlowCont">
               {data?.docs?.length === 0 || !data ? (
                 <Alert>No Product Found</Alert>
@@ -210,18 +222,17 @@ const Blog = () => {
                         </td>
 
                         <td> {i.title} </td>
-                        <td>{i.description}</td>
+                        <td>£{i.description}</td>
                         <td>
                           <span className="flexCont">
-                            <i
-                              className="fa-solid fa-pen-to-square"
-                              onClick={() => {
-                                setId(i._id);
-                                setEdit(true);
-                                setModalShow(true);
-                              }}
-                            />
-
+                              <i className="fa-solid fa-pen-to-square"
+                                onClick={()=>{
+                                  setId(i._id);
+                                  setEdit(true);
+                                  setModalShow(true);
+                                }}
+                              />
+                   
                             <i
                               className="fa-sharp fa-solid fa-trash"
                               onClick={() => deleteHandler(i._id)}
@@ -233,6 +244,7 @@ const Blog = () => {
                   </tbody>
                 </Table>
               )}
+
             </div>
           </>
         )}
@@ -241,4 +253,4 @@ const Blog = () => {
   );
 };
 
-export default HOC(Blog);
+export default HOC(Blog)

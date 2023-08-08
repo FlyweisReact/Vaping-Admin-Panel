@@ -7,8 +7,10 @@ import { toast } from "react-toastify";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import axios from "axios";
 import SpinnerComp from "../Component/SpinnerComp";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
+  const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [id, setId] = useState(null);
@@ -36,7 +38,7 @@ const Blog = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [page, query]);
 
   function MyVerticallyCenteredModal(props) {
     const [image, setImage] = useState("");
@@ -57,7 +59,7 @@ const Blog = () => {
           Auth
         );
         toast.success(data.message);
-        fetchData();
+
         props.onHide();
       } catch (e) {
         console.log(e);
@@ -72,13 +74,12 @@ const Blog = () => {
       fd.append("desc", desc);
       try {
         const { data } = await axios.put(
-          `https://krish-vapes-backend.vercel.app/api/v1/Blog/updateBlog/${id}`,
+          `https://krish-vapes-backend.vercel.app/api/v1//Blog/updateBlog/${id}`,
           fd,
           Auth
         );
         toast.success(data.message);
         props.onHide();
-        fetchData();
       } catch (e) {
         console.log(e);
       }
@@ -172,7 +173,7 @@ const Blog = () => {
         </span>
         <div className="d-flex gap-1">
           <button
-            className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#0c0c0c] text-white tracking-wider"
+            className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#19376d] text-white tracking-wider"
             onClick={() => setModalShow(true)}
           >
             Add Blog
@@ -210,7 +211,7 @@ const Blog = () => {
                         </td>
 
                         <td> {i.title} </td>
-                        <td>{i.description}</td>
+                        <td>£{i.description}</td>
                         <td>
                           <span className="flexCont">
                             <i
