@@ -98,9 +98,9 @@ const ESubCategory = () => {
             >
               <option>--select parent category--</option>
               {category?.map((ele, i) => (
-                <option value={ele?._id} key={i}>
-                  {ele?.name}
-                </option>
+                <>
+                  <option value={ele?._id}>{ele?.name}</option>
+                </>
               ))}
             </Form.Select>
             <Button variant="outline-success" type="submit">
@@ -119,21 +119,6 @@ const ESubCategory = () => {
     : subCat?.filter((ele, i) => {
         return ele?.name?.toLowerCase()?.includes(query?.toLowerCase());
       });
-
-  const deleteHandler = async (id) => {
-    try {
-      const { data } = await axios.delete(
-        `https://krish-vapes-backend.vercel.app/api/v1/SubCategory/deleteSubcategory/${id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      toast.success("Deleted");
-      getSubCategory()
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   return (
     <>
@@ -189,17 +174,16 @@ const ESubCategory = () => {
               </thead>
               <tbody>
                 {searchData?.map((ele, i) => (
-                  <tr key={i}>
-                    <td>{i + 1}</td>
-                    <td>{ele?.name}</td>
-                    <td>{ele?.categoryId?.name}</td>
-                    <td>
-                      <i
-                        className="fa-solid fa-trash"
-                        onClick={() => deleteHandler(ele._id)}
-                      />
-                    </td>
-                  </tr>
+            
+                    <tr>
+                      <td>{i + 1}</td>
+                      <td>{ele?.name}</td>
+                      <td>{ele?.categoryId?.name}</td>
+                      <td>
+                        <i className="fa-solid fa-trash" />
+                      </td>
+                    </tr>
+                  </>
                 ))}
               </tbody>
             </Table>

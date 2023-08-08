@@ -128,8 +128,7 @@ const ESubCategory = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      toast.success("Deleted");
-      getSubCategory()
+      toast.success(data.message);
     } catch (e) {
       console.log(e);
     }
@@ -196,7 +195,7 @@ const ESubCategory = () => {
                     <td>
                       <i
                         className="fa-solid fa-trash"
-                        onClick={() => deleteHandler(ele._id)}
+                        onClick={() => deleteHandler(i._id)}
                       />
                     </td>
                   </tr>

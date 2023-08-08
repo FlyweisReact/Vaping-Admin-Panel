@@ -87,7 +87,7 @@ const Sidebar = ({ hamb, setHamb }) => {
   const logOut = () => {
     localStorage.clear();
     navigate("/");
-    toast.success("Logged Out")
+    toast.success("Logged")
   };
 
   return (

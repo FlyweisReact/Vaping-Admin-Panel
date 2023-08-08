@@ -124,7 +124,7 @@ const ECategory = () => {
             </Form.Group>
 
             <Button
-              style={{ backgroundColor: "#0c0c0c", borderRadius: "0" , border : '1px solid #0c0c0c'}}
+              style={{ backgroundColor: "#0c0c0c", borderRadius: "0" , border : '1px so'}}
               type="submit"
             >
               Submit

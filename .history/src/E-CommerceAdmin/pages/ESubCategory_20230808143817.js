@@ -128,8 +128,8 @@ const ESubCategory = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      toast.success("Deleted");
-      getSubCategory()
+      toast.success(data.message);
+      fect
     } catch (e) {
       console.log(e);
     }

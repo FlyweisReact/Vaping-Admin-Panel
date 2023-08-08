@@ -120,20 +120,15 @@ const ESubCategory = () => {
         return ele?.name?.toLowerCase()?.includes(query?.toLowerCase());
       });
 
-  const deleteHandler = async (id) => {
-    try {
-      const { data } = await axios.delete(
-        `https://krish-vapes-backend.vercel.app/api/v1/SubCategory/deleteSubcategory/${id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
+
+
+      const deleteHandler = async (id) => {
+        try{
+          const { data } = await axios.delete(`api/v1/SubCategory/deleteSubcategory/64be44debe7dcdbf74ce89dc`)
+        }catch(e) {
+          console.log(e)
         }
-      );
-      toast.success("Deleted");
-      getSubCategory()
-    } catch (e) {
-      console.log(e);
-    }
-  };
+      }
 
   return (
     <>
@@ -194,10 +189,7 @@ const ESubCategory = () => {
                     <td>{ele?.name}</td>
                     <td>{ele?.categoryId?.name}</td>
                     <td>
-                      <i
-                        className="fa-solid fa-trash"
-                        onClick={() => deleteHandler(ele._id)}
-                      />
+                      <i className="fa-solid fa-trash" />
                     </td>
                   </tr>
                 ))}

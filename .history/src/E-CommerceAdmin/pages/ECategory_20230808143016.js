@@ -124,7 +124,7 @@ const ECategory = () => {
             </Form.Group>
 
             <Button
-              style={{ backgroundColor: "#0c0c0c", borderRadius: "0" , border : '1px solid #0c0c0c'}}
+              style={{ backgroundColor: "#19376d", borderRadius: "0" }}
               type="submit"
             >
               Submit
@@ -159,7 +159,7 @@ const ECategory = () => {
               setEdit(false);
               setModalShow(true);
             }}
-            className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#0c0c0c] text-white tracking-wider"
+            className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#0c0c0c ] text-white tracking-wider"
           >
             Add Category
           </button>
