@@ -9,6 +9,7 @@ import axios from "axios";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [adminCount, setAdminCount] = useState([]);
+  const [userCount, setUserCount] = useState([]);
   const [categoryCount, setCategoryCount] = useState("");
   const [ productCount , setProductCount ] = useState("")
   const [ orderCount , setOrderCount ] = useState("")

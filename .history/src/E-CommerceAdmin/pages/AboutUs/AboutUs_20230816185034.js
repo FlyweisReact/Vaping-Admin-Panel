@@ -105,7 +105,7 @@ const AboutUs = () => {
                     <Form.Control
                       as="textarea"
                       style={{ height: "200px" }}
-                      defaultValue={item.desc}
+                      value={item.desc}
                     />
                   </FloatingLabel>
                 </Form.Group>

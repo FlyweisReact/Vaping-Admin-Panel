@@ -92,7 +92,7 @@ const AboutUs = () => {
               {item.title ? (
                 <Form.Group className="mb-3">
                   <Form.Label>Title</Form.Label>
-                  <Form.Control type="text" defaultValue={item.title} />
+                  <Form.Control type="text" defaultValue={}={item.title} />
                 </Form.Group>
               ) : (
                 ""
@@ -105,7 +105,7 @@ const AboutUs = () => {
                     <Form.Control
                       as="textarea"
                       style={{ height: "200px" }}
-                      defaultValue={item.desc}
+                      value={item.desc}
                     />
                   </FloatingLabel>
                 </Form.Group>
