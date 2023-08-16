@@ -76,7 +76,7 @@ const Contact = () => {
     };
 
     const postHandler = async (e) => {
-      e.preventDefault();
+        e.preventDefault()
       try {
         const { data } = await axios.post(
           "https://krish-vapes-backend.vercel.app/api/v1/ContactDetails/addContactDetails",
@@ -84,8 +84,8 @@ const Contact = () => {
           Auth
         );
         toast.success(data.message);
-        props.onHide();
-        fetchData();
+        props.onHide()
+        fetchData()
       } catch (e) {
         console.log(e);
         const msg = e.response.data.message;
@@ -175,12 +175,7 @@ const Contact = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Toll Free Number</Form.Label>
-              <Form.Control
-                type="tel"
-                maxLength={12}
-                minLength={8}
-                onChange={(e) => setTollFreeNo(e.target.value)}
-              />
+              <Form.Control type='tel'   onChange={(e) => setTollFreeNo(e.target.value)} />
             </Form.Group>
             <Button variant="success" type="submit">
               Submit

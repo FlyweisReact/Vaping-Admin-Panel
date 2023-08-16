@@ -93,7 +93,7 @@ const SingleOrder = () => {
                     {data?.address} , {data?.pincode} , {data?.city} ,{" "}
                     {data?.country}{" "}
                   </p>
-                  <p className="strong"> Tel : {data?.userId?.phone}  </p>
+                  <p className="strong"> Tel : </p>
                   <p className="strong"> VAT Number : {data?.userId?.vatNumber}  </p>
                 </div>
               </div>

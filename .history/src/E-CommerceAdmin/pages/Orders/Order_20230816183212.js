@@ -15,7 +15,7 @@ const Order = () => {
   const [toDate, setToDate] = useState(null);
 
   const FinalFromDate = fromDate === null ? null : `${fromDate}T00:00:00.000Z`;
-  const FinalToDate = toDate === null ? null : `${toDate}T23:59:59.000Z`;
+  const FinalToDate = toDate === null ? null : `${toDate}T23:69:.000Z`;
 
   const BaseUrl = "https://krish-vapes-backend.vercel.app/";
 

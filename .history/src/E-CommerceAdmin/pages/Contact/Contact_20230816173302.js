@@ -177,8 +177,6 @@ const Contact = () => {
               <Form.Label>Toll Free Number</Form.Label>
               <Form.Control
                 type="tel"
-                maxLength={12}
-                minLength={8}
                 onChange={(e) => setTollFreeNo(e.target.value)}
               />
             </Form.Group>
