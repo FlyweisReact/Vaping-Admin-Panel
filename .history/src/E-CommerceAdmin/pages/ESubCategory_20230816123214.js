@@ -61,6 +61,7 @@ const ESubCategory = () => {
           }
         );
         toast.success(`Sub Category Added Successfully`);
+
         getSubCategory();
         props.onHide();
       } catch (err) {

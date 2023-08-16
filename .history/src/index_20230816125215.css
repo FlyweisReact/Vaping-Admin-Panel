@@ -706,15 +706,9 @@ html {
 }
 .searchByDate div {
   width: 45%;
-  display: flex;
-  gap: 20px;
-  align-items: center;
 }
-.searchByDate input {
-  border: 1px solid #d4d7dc;
-  width: 80%;
-  padding: 10px;
-  outline: none;
+.searchByDate div input {
+  width: 45%;
 }
 
 .so5 {

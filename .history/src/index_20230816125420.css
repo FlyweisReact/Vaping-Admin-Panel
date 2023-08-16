@@ -711,10 +711,9 @@ html {
   align-items: center;
 }
 .searchByDate input {
-  border: 1px solid #d4d7dc;
+  border: 1px solid black;
   width: 80%;
   padding: 10px;
-  outline: none;
 }
 
 .so5 {

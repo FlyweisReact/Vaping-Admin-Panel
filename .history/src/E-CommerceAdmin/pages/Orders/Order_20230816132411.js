@@ -14,7 +14,7 @@ const Order = () => {
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
 
-  const FinalFromDate = fromDate === null ? null : `${fromDate}T00:00:00.000Z`;
+  const FinalFromDate = fromDate === null ? null : ` ${fromDate}T00:00:00.000Z`;
   const FinalToDate = toDate === null ? null : `${toDate}T00:00:00.000Z`;
 
   const BaseUrl = "https://krish-vapes-backend.vercel.app/";
@@ -51,7 +51,7 @@ const Order = () => {
         <p className="headP">Dashboard / Order</p>
 
         <div
-          className="pb-4  w-full flex justify-between items-center"
+          className="pb-4 sticky top-0  w-full flex justify-between items-center"
           style={{ width: "98%", marginLeft: "2%" }}
         >
           <span
@@ -115,7 +115,7 @@ const Order = () => {
                       <tr key={index}>
                         <td> #{index + 1} </td>
                         <td> {i.orderId} </td>
-                        <td> £{i?.paidAmount} </td>
+                        <td> {i?.paidAmount} </td>
                         <td>
                           {" "}
                           <Badge>{i.orderStatus}</Badge>{" "}
@@ -124,7 +124,7 @@ const Order = () => {
                           {" "}
                           <Badge>{i.paymentStatus}</Badge>{" "}
                         </td>
-                        <td>£{i.delivery ? i.delivery : 0} </td>
+                        <td></td>
 
                         <td>
                           <span className="flexCont">

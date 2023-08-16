@@ -2,27 +2,27 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Alert, Badge, Table } from "react-bootstrap";
+import { Alert, Badge, Button, Form, Modal, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import HOC from "../../layout/HOC";
 
 const Order = () => {
+  const [modalShow, setModalShow] = useState(false);
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
-  const [query, setQuery] = useState(null);
-  const [fromDate, setFromDate] = useState(null);
-  const [toDate, setToDate] = useState(null);
+  const [query, setQuery] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
 
-  const FinalFromDate = fromDate === null ? null : `${fromDate}T00:00:00.000Z`;
-  const FinalToDate = toDate === null ? null : `${toDate}T00:00:00.000Z`;
+  const FinalFromDate = `${}`
 
   const BaseUrl = "https://krish-vapes-backend.vercel.app/";
 
   const getOrders = async () => {
     try {
       const response = await axios.get(
-        `${BaseUrl}api/v1/admin/paginateAllOrdersSearch/OrdersSearch?search=${query}&page=${page}&limit=10&fromDate=${FinalFromDate}&toDate=${FinalToDate}`
+        `${BaseUrl}api/v1/admin/paginateAllOrdersSearch/OrdersSearch?search=${query}&page=${page}&limit=10?fromDate=${fromDate}?toDate=${toDate}`
       );
       setData(response.data.data.docs);
       setTotal(response.data.data.total);
@@ -43,15 +43,44 @@ const Order = () => {
 
   useEffect(() => {
     getOrders();
-  }, [page, query, FinalFromDate, FinalToDate]);
+  }, [page, query]);
+
+  function EditStatus(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Edit Status
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Select aria-label="Default select example" className="mb-3">
+              <option>--Edit Status--</option>
+              <option value="1">Shipped</option>
+              <option value="2">Pending</option>
+              <option value="3">Canceled</option>
+            </Form.Select>
+            <Button variant="outline-success">Submit</Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
+    );
+  }
 
   return (
     <>
+      <EditStatus show={modalShow} onHide={() => setModalShow(false)} />
       <section>
         <p className="headP">Dashboard / Order</p>
 
         <div
-          className="pb-4  w-full flex justify-between items-center"
+          className="pb-4 sticky top-0  w-full flex justify-between items-center"
           style={{ width: "98%", marginLeft: "2%" }}
         >
           <span
@@ -73,26 +102,6 @@ const Order = () => {
               onChange={(e) => setQuery(e.target.value)}
             />
           </div>
-
-          <div className="searchByDate">
-            <div>
-              <label>Starting Date : </label>
-              <input
-                type="date"
-                onChange={(e) => setFromDate(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <label>Ending Date : </label>
-              <input
-                type="date"
-                onChange={(e) => setToDate(e.target.value)}
-                min={fromDate}
-              />
-            </div>
-          </div>
-
           {data?.length === 0 || !data ? (
             <Alert>No Data Found</Alert>
           ) : (
@@ -106,7 +115,6 @@ const Order = () => {
                       <th>Total Price</th>
                       <th>Order Status</th>
                       <th>Payment Status</th>
-                      <th>Delivery Amount </th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -115,7 +123,7 @@ const Order = () => {
                       <tr key={index}>
                         <td> #{index + 1} </td>
                         <td> {i.orderId} </td>
-                        <td> £{i?.paidAmount} </td>
+                        <td> {i?.paidAmount} </td>
                         <td>
                           {" "}
                           <Badge>{i.orderStatus}</Badge>{" "}
@@ -124,7 +132,6 @@ const Order = () => {
                           {" "}
                           <Badge>{i.paymentStatus}</Badge>{" "}
                         </td>
-                        <td>£{i.delivery ? i.delivery : 0} </td>
 
                         <td>
                           <span className="flexCont">

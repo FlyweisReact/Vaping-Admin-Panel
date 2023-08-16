@@ -124,7 +124,7 @@ const Order = () => {
                           {" "}
                           <Badge>{i.paymentStatus}</Badge>{" "}
                         </td>
-                        <td>£{i.delivery ? i.delivery : 0} </td>
+                        <td>£</td>
 
                         <td>
                           <span className="flexCont">

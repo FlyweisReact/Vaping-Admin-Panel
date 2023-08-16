@@ -56,16 +56,17 @@ const ESubCategory = () => {
             name,
             categoryId,
           },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
+          // {
+          //   headers: { Authorization: `Bearer ${token}` },
+          // }
         );
         toast.success(`Sub Category Added Successfully`);
+
         getSubCategory();
         props.onHide();
       } catch (err) {
-        const msg = err.response.data.message;
-        toast.error(msg);
+        console.log(err);
+        const msg = err.res
       }
     };
 

@@ -24,7 +24,7 @@ const SingleOrder = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-
+      
       setData(response.data.data);
       setOrders(response.data.data.Orders);
     } catch (e) {
@@ -149,9 +149,9 @@ const SingleOrder = () => {
                     <td> {index + 1} </td>
                     <td> {i.productId?.name} </td>
                     <td> {i.quantity} </td>
-                    <td> £{i.productId?.price} </td>
-                    <td> £{i.total} </td>
-                    <td> £{i.totalTax} </td>
+                    <td> {i.productId?.price} </td>
+                    <td> {i.total} </td>
+                    <td> {i.totalTax} </td>
                     <td> {i.productSize} </td>
                   </tr>
                 ))}
@@ -188,7 +188,7 @@ const SingleOrder = () => {
                 AMOUNT <br />£{data?.total}
                 <br />
                 DELIVERY CHARGES
-                <br />£{data?.delivery ? data?.delivery : 0}
+                <br />0
               </p>
 
               <p className="stronger">

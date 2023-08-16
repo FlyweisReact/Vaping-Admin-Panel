@@ -61,11 +61,11 @@ const ESubCategory = () => {
           }
         );
         toast.success(`Sub Category Added Successfully`);
+
         getSubCategory();
         props.onHide();
       } catch (err) {
-        const msg = err.response.data.message;
-        toast.error(msg);
+        console.log(err?.message);
       }
     };
 

@@ -36,6 +36,7 @@ const ESubCategory = () => {
           "https://krish-vapes-backend.vercel.app/api/v1/Category/allCategory"
         );
         setCategory(data?.data);
+      
       } catch (e) {
         console.log(e);
       }
@@ -62,10 +63,8 @@ const ESubCategory = () => {
         );
         toast.success(`Sub Category Added Successfully`);
         getSubCategory();
-        props.onHide();
       } catch (err) {
-        const msg = err.response.data.message;
-        toast.error(msg);
+        console.log(err?.message);
       }
     };
 
@@ -130,7 +129,7 @@ const ESubCategory = () => {
         }
       );
       toast.success("Deleted");
-      getSubCategory();
+      getSubCategory()
     } catch (e) {
       console.log(e);
     }

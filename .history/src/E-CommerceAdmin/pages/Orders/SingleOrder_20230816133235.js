@@ -32,10 +32,14 @@ const SingleOrder = () => {
     }
   };
 
+
+
+
   useEffect(() => {
     getOrder();
   }, []);
 
+  
   const generatePdf = () => {
     const element = document.getElementById("pdfGen");
     const opt = {
@@ -151,7 +155,7 @@ const SingleOrder = () => {
                     <td> {i.quantity} </td>
                     <td> £{i.productId?.price} </td>
                     <td> £{i.total} </td>
-                    <td> £{i.totalTax} </td>
+                    <td> {i.totalTax} </td>
                     <td> {i.productSize} </td>
                   </tr>
                 ))}
@@ -188,7 +192,7 @@ const SingleOrder = () => {
                 AMOUNT <br />£{data?.total}
                 <br />
                 DELIVERY CHARGES
-                <br />£{data?.delivery ? data?.delivery : 0}
+                <br />{data?.delivery}
               </p>
 
               <p className="stronger">

@@ -701,20 +701,12 @@ html {
   border-bottom: 1px solid #d4d7dc;
   padding-bottom: 20px;
   margin-bottom: 20px;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  /* flex-wrap: wrap;
+  justify-content: space-between; */
 }
-.searchByDate div {
+.searchByDate div{
   width: 45%;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-.searchByDate input {
-  border: 1px solid #d4d7dc;
-  width: 80%;
-  padding: 10px;
-  outline: none;
+  border: 1px solid black;
 }
 
 .so5 {

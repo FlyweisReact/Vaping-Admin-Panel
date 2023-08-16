@@ -14,7 +14,7 @@ const Order = () => {
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
 
-  const FinalFromDate = fromDate === null ? null : `${fromDate}T00:00:00.000Z`;
+  const FinalFromDate = fromDate === null ? null : ` ${fromDate}T00:00:00.000Z`;
   const FinalToDate = toDate === null ? null : `${toDate}T00:00:00.000Z`;
 
   const BaseUrl = "https://krish-vapes-backend.vercel.app/";
@@ -124,7 +124,7 @@ const Order = () => {
                           {" "}
                           <Badge>{i.paymentStatus}</Badge>{" "}
                         </td>
-                        <td>£{i.delivery ? i.delivery : 0} </td>
+                        <td>£</td>
 
                         <td>
                           <span className="flexCont">

@@ -694,27 +694,13 @@ html {
   margin: 0;
 }
 
-.searchByDate {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 1px solid #d4d7dc;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.searchByDate div {
-  width: 45%;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-.searchByDate input {
-  border: 1px solid #d4d7dc;
-  width: 80%;
-  padding: 10px;
-  outline: none;
+.searchByDate{
+      display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #d4d7dc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .so5 {

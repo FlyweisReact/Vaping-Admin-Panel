@@ -10,19 +10,19 @@ const Order = () => {
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
-  const [query, setQuery] = useState(null);
-  const [fromDate, setFromDate] = useState(null);
-  const [toDate, setToDate] = useState(null);
+  const [query, setQuery] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
 
-  const FinalFromDate = fromDate === null ? null : `${fromDate}T00:00:00.000Z`;
-  const FinalToDate = toDate === null ? null : `${toDate}T00:00:00.000Z`;
+  const FinalFromDate = `${fromDate}T00:00:00.000Z`;
+  const FinalToDate = `${toDate}T00:00:00.000Z`;
 
   const BaseUrl = "https://krish-vapes-backend.vercel.app/";
 
   const getOrders = async () => {
     try {
       const response = await axios.get(
-        `${BaseUrl}api/v1/admin/paginateAllOrdersSearch/OrdersSearch?search=${query}&page=${page}&limit=10&fromDate=${FinalFromDate}&toDate=${FinalToDate}`
+        `${BaseUrl}api/v1/admin/paginateAllOrdersSearch/OrdersSearch?search=${query}&page=${page}&limit=10?fromDate=${FinalFromDate}?toDate=${FinalToDate}`
       );
       setData(response.data.data.docs);
       setTotal(response.data.data.total);
@@ -43,7 +43,7 @@ const Order = () => {
 
   useEffect(() => {
     getOrders();
-  }, [page, query, FinalFromDate, FinalToDate]);
+  }, [page, query]);
 
   return (
     <>
@@ -51,7 +51,7 @@ const Order = () => {
         <p className="headP">Dashboard / Order</p>
 
         <div
-          className="pb-4  w-full flex justify-between items-center"
+          className="pb-4 sticky top-0  w-full flex justify-between items-center"
           style={{ width: "98%", marginLeft: "2%" }}
         >
           <span
@@ -85,11 +85,7 @@ const Order = () => {
 
             <div>
               <label>Ending Date : </label>
-              <input
-                type="date"
-                onChange={(e) => setToDate(e.target.value)}
-                min={fromDate}
-              />
+              <input type="date" onChange={(e) => setToDate(e.target.value)} min={fromDate} />
             </div>
           </div>
 
@@ -106,7 +102,6 @@ const Order = () => {
                       <th>Total Price</th>
                       <th>Order Status</th>
                       <th>Payment Status</th>
-                      <th>Delivery Amount </th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -115,7 +110,7 @@ const Order = () => {
                       <tr key={index}>
                         <td> #{index + 1} </td>
                         <td> {i.orderId} </td>
-                        <td> £{i?.paidAmount} </td>
+                        <td> {i?.paidAmount} </td>
                         <td>
                           {" "}
                           <Badge>{i.orderStatus}</Badge>{" "}
@@ -124,7 +119,6 @@ const Order = () => {
                           {" "}
                           <Badge>{i.paymentStatus}</Badge>{" "}
                         </td>
-                        <td>£{i.delivery ? i.delivery : 0} </td>
 
                         <td>
                           <span className="flexCont">
