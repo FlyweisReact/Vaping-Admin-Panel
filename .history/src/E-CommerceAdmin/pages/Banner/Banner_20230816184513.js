@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect, useState } from "react";
 import HOC from "../../layout/HOC";
 import { Table, Modal, Form, Button, Alert } from "react-bootstrap";
@@ -121,7 +119,7 @@ const Banner = () => {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             {" "}
-            {edit ? "Edit Banner" : " Add Banner"}
+            {edit ? "Edit Banner" : " Add Category"}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -201,10 +199,7 @@ const Banner = () => {
           </span>
           <button
             className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#19376d] text-white tracking-wider"
-            onClick={() => {
-              setEdit(false);
-              setModalShow(true);
-            }}
+            onClick={() => setModalShow(true)}
           >
             Add Banner
           </button>
@@ -271,9 +266,8 @@ const Banner = () => {
                         <td>{i.position}</td>
                         <td>
                           <span className="flexCont">
-                            <i
-                              className="fa-solid fa-trash"
-                              onClick={() => handleDelete(i._id)}
+                            <i className="fa-solid fa-trash" 
+                                onClick={() => handleDelete(i._id)}
                             />
                             <i
                               className="fa-solid fa-pen-to-square"
@@ -302,9 +296,8 @@ const Banner = () => {
                         <td>{i.position}</td>
                         <td>
                           <span className="flexCont">
-                            <i
-                              className="fa-solid fa-trash"
-                              onClick={() => handleDelete(i._id)}
+                            <i className="fa-solid fa-trash" 
+                                onClick={() => handleDelete(i._id)}
                             />
                             <i
                               className="fa-solid fa-pen-to-square"

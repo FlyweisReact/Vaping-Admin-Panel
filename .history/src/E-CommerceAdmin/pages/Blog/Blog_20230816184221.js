@@ -68,8 +68,8 @@ const Blog = () => {
       e.preventDefault();
       const fd = new FormData();
       fd.append("image", image);
-      fd.append("title", title);
-      fd.append("description", desc);
+      fd.append("tilte", title);
+      fd.append("desc", desc);
       try {
         const { data } = await axios.put(
           `https://krish-vapes-backend.vercel.app/api/v1/Blog/updateBlog/${id}`,
@@ -93,7 +93,7 @@ const Blog = () => {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             {" "}
-            {edit ? "Edit Blog" : " Add Blog"}
+            {edit ? "Edit Blog" : " Add Category"}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

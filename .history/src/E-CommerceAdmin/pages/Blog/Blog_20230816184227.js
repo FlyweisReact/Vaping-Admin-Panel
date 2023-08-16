@@ -93,7 +93,7 @@ const Blog = () => {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             {" "}
-            {edit ? "Edit Blog" : " Add Blog"}
+            {edit ? "Edit Blog" : " Add Category"}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
