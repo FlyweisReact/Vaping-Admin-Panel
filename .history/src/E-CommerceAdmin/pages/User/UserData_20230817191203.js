@@ -24,7 +24,7 @@ const UserData = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(data.data);
-      setAddress(data.address)
+      setAddress(data)
     } catch (e) {
       console.log(e);
     }
@@ -72,16 +72,11 @@ const UserData = () => {
           {ValueChecker(user?.dob, "Date of Birth")}
           {ValueChecker(user?.email, "Email Address")}
           {ValueChecker(user?.company, "Company")}
-          {ValueChecker(user?.country, "Country Code")}
+          {ValueChecker(user?.country, "Country")}
           {ValueChecker(user?.phone, "Phone Number")}
           {ValueChecker(user?.vatNumber, "Vat Number")}
           {ValueChecker(user?.status, "Status")}
           {ValueChecker(user?.registrationNo, "Registration Number")}
-          {ValueChecker(address?.address, "Buisness Address")}
-          {ValueChecker(address?.addressComplement, "Buisness Address Complement")}
-          {ValueChecker(address?.city, "City")}
-          {ValueChecker(address?.country, "Country")}
-          {ValueChecker(address?.pincode, "Postal Code")}
           {ValueChecker(user?.createdAt?.slice(0, 10), "Created At")}
         </Form>
 

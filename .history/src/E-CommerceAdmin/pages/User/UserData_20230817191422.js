@@ -82,6 +82,7 @@ const UserData = () => {
           {ValueChecker(address?.city, "City")}
           {ValueChecker(address?.country, "Country")}
           {ValueChecker(address?.pincode, "Postal Code")}
+          {ValueChecker(address?.city, "City")}
           {ValueChecker(user?.createdAt?.slice(0, 10), "Created At")}
         </Form>
 

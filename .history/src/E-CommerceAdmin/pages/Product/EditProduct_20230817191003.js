@@ -282,8 +282,8 @@ const EditProduct = () => {
                 <Form.Label>Size</Form.Label>
                 <Form.Select onChange={(e) => setSize(e.target.value)}>
                   <option>-- Select Prefrence --</option>
-                  <option value={"true"}>YES</option>
-                  <option value={"false"}>NO</option>
+                  <option value={"true"}>True</option>
+                  <option value={"false"}>False</option>
                 </Form.Select>
               </Form.Group>
 

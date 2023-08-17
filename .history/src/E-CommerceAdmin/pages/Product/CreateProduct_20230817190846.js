@@ -1,18 +1,18 @@
 /** @format */
+
 import React, { useEffect, useState } from "react";
 import HOC from "../../layout/HOC";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const EditProduct = () => {
-  const { id } = useParams();
-  const [name, setName] = useState("");
+const CreateProduct = () => {
+  const [name, setName] = useState(null);
   const [categoryId, setCategoryId] = useState(null);
   const [subcategoryId, setSubCategoryId] = useState(null);
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState(null);
+  const [price, setPrice] = useState(null);
   const [taxInclude, setTaxInclude] = useState(false);
   const [tax, setTax] = useState(0);
   const [discount, setDiscount] = useState(false);
@@ -28,21 +28,6 @@ const EditProduct = () => {
   const [quantityDigit, setQuantityDigit] = useState("");
   const [categoryData, setCategoryData] = useState([]);
   const [subCategoryData, setSubCategoryData] = useState([]);
-
-  const getProductDetail = async () => {
-    try {
-      const res = await axios.get(
-        `https://krish-vapes-backend.vercel.app/api/v1/Product/${id}`
-      );
-      setName(res.data.data.name);
-      setDescription(res.data.data.description);
-      setDiscountPrice(res.data.data.discountPrice);
-      setPrice(res.data.data.price);
-      setTax(res.data.data.tax);
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   const getCategory = async () => {
     try {
@@ -68,7 +53,6 @@ const EditProduct = () => {
 
   useEffect(() => {
     getCategory();
-    getProductDetail();
     getSubCategory();
   }, []);
 
@@ -111,7 +95,6 @@ const EditProduct = () => {
 
   if (colorActive === "true") {
     if (size === "false") {
-      fd.append("size", size);
       Array.from(color).forEach((item) => {
         fd.append("color", item);
       });
@@ -136,8 +119,8 @@ const EditProduct = () => {
   const createProduct = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(
-        `https://krish-vapes-backend.vercel.app/api/v1/Product/editProduct/${id}`,
+      const res = await axios.post(
+        `https://krish-vapes-backend.vercel.app/api/v1/Product/addProduct`,
         fd,
         Auth
       );
@@ -149,16 +132,23 @@ const EditProduct = () => {
     }
   };
 
+  const FloatChecker = (inputValue) => {
+    if (/^\d*\.?\d*$/.test(inputValue)) {
+      setPrice(parseFloat(inputValue));
+    } else {
+      alert("Invalid input. Please enter a valid float.");
+    }
+  };
+
   return (
     <section>
-      <p className="headP">Dashboard / Edit Product</p>
+      <p className="headP">Dashboard / Create New Product</p>
       <section className="sectionCont">
         <Form onSubmit={createProduct}>
           <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
             <Form.Control
               type="text"
-              value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
@@ -193,7 +183,6 @@ const EditProduct = () => {
               <Form.Control
                 as="textarea"
                 style={{ height: "100px" }}
-                value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </FloatingLabel>
@@ -203,10 +192,11 @@ const EditProduct = () => {
             <Form.Label>Price</Form.Label>
             <Form.Control
               type="number"
-              min={0}
               step={0.01}
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              min={0}
+              onChange={(e) => {
+                setPrice(e.target.value);
+              }}
             />
           </Form.Group>
 
@@ -229,7 +219,6 @@ const EditProduct = () => {
                 type="number"
                 min={0}
                 step={0.01}
-                value={tax}
                 onChange={(e) => setTax(e.target.value)}
               />
             </Form.Group>
@@ -244,8 +233,8 @@ const EditProduct = () => {
               onChange={(e) => setDiscount(e.target.value)}
             >
               <option>-- Select Prefrence --</option>
-              <option value={"true"}>YES</option>
-              <option value={"false"}>NO</option>
+              <option value={"true"}>True</option>
+              <option value={"false"}>False</option>
             </Form.Select>
           </Form.Group>
 
@@ -256,7 +245,6 @@ const EditProduct = () => {
                 type="number"
                 min={0}
                 step={0.01}
-                value={discountPrice}
                 onChange={(e) => setDiscountPrice(e.target.value)}
               />
             </Form.Group>
@@ -271,8 +259,8 @@ const EditProduct = () => {
               onChange={(e) => setColorActive(e.target.value)}
             >
               <option>-- Select Prefrence --</option>
-              <option value={"true"}>YES</option>
-              <option value={"false"}>NO</option>
+              <option value={"true"}>True</option>
+              <option value={"false"}>False</option>
             </Form.Select>
           </Form.Group>
 
@@ -282,8 +270,8 @@ const EditProduct = () => {
                 <Form.Label>Size</Form.Label>
                 <Form.Select onChange={(e) => setSize(e.target.value)}>
                   <option>-- Select Prefrence --</option>
-                  <option value={"true"}>YES</option>
-                  <option value={"false"}>NO</option>
+                  <option value={"true"}>True</option>
+                  <option value={"false"}>False</option>
                 </Form.Select>
               </Form.Group>
 
@@ -497,4 +485,4 @@ const EditProduct = () => {
   );
 };
 
-export default HOC(EditProduct);
+export default HOC(CreateProduct);
