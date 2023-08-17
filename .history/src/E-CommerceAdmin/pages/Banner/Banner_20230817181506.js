@@ -61,6 +61,8 @@ const Banner = () => {
     getMidBanner();
   }, []);
 
+
+
   function MyVerticallyCenteredModal(props) {
     const [image, setImage] = useState("");
     const [name, setName] = useState("");
@@ -231,7 +233,7 @@ const Banner = () => {
             className="tracking-widest text-slate-900 font-semibold uppercase"
             style={{ fontSize: "1.5rem" }}
           >
-            All Banner
+            All Banner ( Total : {total} )
           </span>
           <button
             className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#19376d] text-white tracking-wider"

@@ -61,6 +61,8 @@ const Banner = () => {
     getMidBanner();
   }, []);
 
+
+
   function MyVerticallyCenteredModal(props) {
     const [image, setImage] = useState("");
     const [name, setName] = useState("");

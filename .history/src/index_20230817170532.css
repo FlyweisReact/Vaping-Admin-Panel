@@ -513,6 +513,14 @@ html {
   width: 49%;
 }
 
+.ud3 button {
+  background: ;
+  width: 50%;
+  height: 40px;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+}
 
 .ud4 button {
   background: #c44b3f;

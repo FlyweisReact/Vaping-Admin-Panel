@@ -95,7 +95,7 @@ const UserData = () => {
               </Button>
             )}
           </div>
-          <div className="col-6 text-right">
+          <div >
             <Link to="/user" className="mt-5">
               <Button variant="dark">Back</Button>
             </Link>

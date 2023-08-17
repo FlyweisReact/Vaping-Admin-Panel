@@ -77,7 +77,7 @@ const UserData = () => {
           {ValueChecker(user?.createdAt?.slice(0, 10), "Created At")}
         </Form>
 
-        <div className="row justify-content-between">
+        <div className="row">
           <div className="col-6">
             {user?.status === "Approved" ? (
               <Button
@@ -95,7 +95,7 @@ const UserData = () => {
               </Button>
             )}
           </div>
-          <div className="col-6 text-right">
+          <div className="col-6">
             <Link to="/user" className="mt-5">
               <Button variant="dark">Back</Button>
             </Link>

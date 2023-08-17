@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import HOC from "../../layout/HOC";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Button, Form } from "react-bootstrap";
@@ -77,28 +77,25 @@ const UserData = () => {
           {ValueChecker(user?.createdAt?.slice(0, 10), "Created At")}
         </Form>
 
-        <div className="row justify-content-between">
-          <div className="col-6">
+        <div className="ud1">
+          <div className="ud2">
             {user?.status === "Approved" ? (
               <Button
-                variant="danger"
+                variant="outline-danger"
                 onClick={() => handleApproveReject("Reject")}
               >
                 Reject
               </Button>
             ) : (
+
               <Button
-                variant="success"
+                variant="outline-success"
                 onClick={() => handleApproveReject("Approved")}
               >
-                Approved
+                Reject
               </Button>
+            
             )}
-          </div>
-          <div className="col-6 text-right">
-            <Link to="/user" className="mt-5">
-              <Button variant="dark">Back</Button>
-            </Link>
           </div>
         </div>
       </section>

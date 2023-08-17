@@ -78,7 +78,7 @@ const UserData = () => {
         </Form>
 
         <div className="row justify-content-between">
-          <div className="col-6">
+          <div >
             {user?.status === "Approved" ? (
               <Button
                 variant="danger"
@@ -95,7 +95,7 @@ const UserData = () => {
               </Button>
             )}
           </div>
-          <div className="col-6 text-right">
+          <div >
             <Link to="/user" className="mt-5">
               <Button variant="dark">Back</Button>
             </Link>

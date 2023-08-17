@@ -12,6 +12,7 @@ const Banner = () => {
   const [mid, setMid] = useState([]);
 
   const [modalShow, setModalShow] = useState(false);
+  // const [data, setData] = useState([]);
   const [id, setId] = useState(null);
   const [edit, setEdit] = useState(false);
 
@@ -21,6 +22,8 @@ const Banner = () => {
       Authorization: `Bearer ${token}`,
     },
   };
+
+
 
   const getTopBanner = async () => {
     const url =
@@ -61,27 +64,26 @@ const Banner = () => {
     getMidBanner();
   }, []);
 
+
   function MyVerticallyCenteredModal(props) {
     const [image, setImage] = useState("");
     const [name, setName] = useState("");
     const [type, setType] = useState("");
-    const [productId, setProductId] = useState("");
-    const [products, setProducts] = useState([]);
+    const [ productId , setProductId ] = useState('')
+    const [ products , setProducts ] = useState([])
 
     const getProducts = async () => {
-      try {
-        const res = await axios.get(
-          "https://krish-vapes-backend.vercel.app/api/v1/Product/all/paginateProductSearch"
-        );
-        setProducts(res.data.data);
-      } catch {}
-    };
+      try{
+        const res = await axios.get("https://krish-vapes-backend.vercel.app/api/v1/Product/all/paginateProductSearch")
+        setProducts(res.data.data)
+      }catch{}
+    }
 
     useEffect(() => {
-      if (props.show === true) {
-        getProducts();
+      if(props.show === true){
+        getProducts()
       }
-    }, [props]);
+    },[props])
 
     const postHandler = async (e) => {
       e.preventDefault();
@@ -177,15 +179,12 @@ const Banner = () => {
               <Form.Label>Select Product</Form.Label>
               <Form.Control
                 as="select"
-                onChange={(e) => setProductId(e.target.value)}
+                onChange={(e) => setType(e.target.value)}
               >
-                <option value="">Select Product</option>
-                {products?.docs?.map((i, index) => (
-                  <option key={index} value={i._id}>
-                    {" "}
-                    {i.name}{" "}
-                  </option>
-                ))}
+                <option value="">Select an Type</option>
+                <option value="TOP">TOP</option>
+                <option value="BOTTOM">BOTTOM</option>
+                <option value="MID">MID</option>
               </Form.Control>
             </Form.Group>
 
@@ -231,7 +230,7 @@ const Banner = () => {
             className="tracking-widest text-slate-900 font-semibold uppercase"
             style={{ fontSize: "1.5rem" }}
           >
-            All Banner
+            All Banner ( Total : {top.length} )
           </span>
           <button
             className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#19376d] text-white tracking-wider"
@@ -257,7 +256,6 @@ const Banner = () => {
                       <th>Image</th>
                       <th>Name</th>
                       <th>Position</th>
-                      <th>Product</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -274,7 +272,6 @@ const Banner = () => {
                         </td>
                         <td>{i.bannerName} </td>
                         <td>{i.position}</td>
-                        <td>{i.productId?.name}</td>
                         <td>
                           <span className="flexCont">
                             <i
@@ -305,7 +302,6 @@ const Banner = () => {
                         </td>
                         <td>{i.bannerName} </td>
                         <td>{i.position}</td>
-                        <td>{i.productId?.name}</td>
                         <td>
                           <span className="flexCont">
                             <i
@@ -337,7 +333,6 @@ const Banner = () => {
                         </td>
                         <td>{i.bannerName} </td>
                         <td>{i.position}</td>
-                        <td>{i.productId?.name}</td>
                         <td>
                           <span className="flexCont">
                             <i

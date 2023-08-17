@@ -77,30 +77,24 @@ const UserData = () => {
           {ValueChecker(user?.createdAt?.slice(0, 10), "Created At")}
         </Form>
 
-        <div className="row justify-content-between">
-          <div className="col-6">
-            {user?.status === "Approved" ? (
-              <Button
-                variant="danger"
-                onClick={() => handleApproveReject("Reject")}
-              >
-                Reject
-              </Button>
-            ) : (
-              <Button
-                variant="success"
-                onClick={() => handleApproveReject("Approved")}
-              >
-                Approved
-              </Button>
-            )}
-          </div>
-          <div className="col-6 text-right">
-            <Link to="/user" className="mt-5">
-              <Button variant="dark">Back</Button>
-            </Link>
-          </div>
-        </div>
+        {user?.status === "Approved" ? (
+          <Button
+            variant="danger"
+            onClick={() => handleApproveReject("Reject")}
+          >
+            Reject
+          </Button>
+        ) : (
+          <Button
+            variant="success"
+            onClick={() => handleApproveReject("Approved")}
+          >
+            Approved
+          </Button>
+        )}
+        <Link to="/user">
+          <Button variant="dark">Back</Button>
+        </Link>
       </section>
     </>
   );

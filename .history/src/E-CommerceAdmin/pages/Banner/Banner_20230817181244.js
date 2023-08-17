@@ -14,6 +14,8 @@ const Banner = () => {
   const [modalShow, setModalShow] = useState(false);
   const [id, setId] = useState(null);
   const [edit, setEdit] = useState(false);
+  const [ total  , setTotal ] = useState
+
 
   const token = localStorage.getItem("AdminToken");
   const Auth = {
@@ -82,6 +84,7 @@ const Banner = () => {
         getProducts();
       }
     }, [props]);
+
 
     const postHandler = async (e) => {
       e.preventDefault();
@@ -231,7 +234,7 @@ const Banner = () => {
             className="tracking-widest text-slate-900 font-semibold uppercase"
             style={{ fontSize: "1.5rem" }}
           >
-            All Banner
+            All Banner ( Total : {top.length} )
           </span>
           <button
             className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#19376d] text-white tracking-wider"

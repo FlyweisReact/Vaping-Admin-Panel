@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import HOC from "../../layout/HOC";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const UserData = () => {
   const { id } = useParams();
@@ -22,6 +22,7 @@ const UserData = () => {
       const { data } = await axios.get(url, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log(data.data);
       setUser(data.data);
     } catch (e) {
       console.log(e);
@@ -30,6 +31,8 @@ const UserData = () => {
   useEffect(() => {
     getUser();
   }, []);
+
+  console.log(user, "All User");
 
   const handleApproveReject = async (status) => {
     try {
@@ -65,40 +68,24 @@ const UserData = () => {
         <Form>
           {ValueChecker(user?.courtesyTitle, "Social title")}
           {ValueChecker(user?.firstName, "First Name")}
-          {ValueChecker(user?.lastName, "Last Name")}
-          {ValueChecker(user?.fullName, "Full Name")}
+          {ValueChecker(user?.lastName, "First Name")}
           {ValueChecker(user?.dob, "Date of Birth")}
           {ValueChecker(user?.email, "Email Address")}
-          {ValueChecker(user?.company, "Company")}
-          {ValueChecker(user?.country, "Country")}
-          {ValueChecker(user?.phone, "Phone Number")}
-          {ValueChecker(user?.vatNumber, "Vat Number")}
-          {ValueChecker(user?.status, "Status")}
           {ValueChecker(user?.createdAt?.slice(0, 10), "Created At")}
         </Form>
 
-        <div className="row justify-content-between">
-          <div className="col-6">
-            {user?.status === "Approved" ? (
-              <Button
-                variant="danger"
-                onClick={() => handleApproveReject("Reject")}
-              >
+        <div className="ud1">
+          <div className="ud2">
+            <div className="ud3">
+              <button onClick={() => handleApproveReject("Approved")}>
+                Approve
+              </button>
+            </div>
+            <div className="ud4">
+              <button onClick={() => handleApproveReject("Reject")}>
                 Reject
-              </Button>
-            ) : (
-              <Button
-                variant="success"
-                onClick={() => handleApproveReject("Approved")}
-              >
-                Approved
-              </Button>
-            )}
-          </div>
-          <div className="col-6 text-right">
-            <Link to="/user" className="mt-5">
-              <Button variant="dark">Back</Button>
-            </Link>
+              </button>
+            </div>
           </div>
         </div>
       </section>
