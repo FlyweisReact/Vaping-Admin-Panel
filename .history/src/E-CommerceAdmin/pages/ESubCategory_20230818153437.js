@@ -28,8 +28,8 @@ const ESubCategory = () => {
   }, []);
 
   function MyVerticallyCenteredModal(props) {
-    const [name, setName] = useState(null);
-    const [categoryId, setCategoryId] = useState(null);
+    const [name, setName] = useState("");
+    const [categoryId, setCategoryId] = useState("");
     const [category, setCategory] = useState([]);
 
     const getCategory = async () => {
@@ -71,11 +71,13 @@ const ESubCategory = () => {
       }
     };
 
-    const putHandler = async (e) => {
+
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      const url = `https://krish-vapes-backend.vercel.app/api/v1/SubCategory/updateSubcategory/${id}`;
+      const url =
+        "https://krish-vapes-backend.vercel.app/api/v1/SubCategory/addSubcategory";
       try {
-        const { data } = await axios.put(
+        const { data } = await axios.post(
           url,
           {
             name,
@@ -85,7 +87,7 @@ const ESubCategory = () => {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        toast.success(`Sub Category Edited Successfully`);
+        toast.success(`Sub Category Added Successfully`);
         getSubCategory();
         props.onHide();
       } catch (err) {
@@ -108,7 +110,7 @@ const ESubCategory = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={edit ? putHandler : handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -182,7 +184,7 @@ const ESubCategory = () => {
           </span>
           <button
             onClick={() => {
-              setEdit(false);
+              setEdit(false)
               setModalShow(true);
             }}
             className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#0c0c0c] text-white tracking-wider"
@@ -225,7 +227,7 @@ const ESubCategory = () => {
                         <i
                           className="fa-solid fa-pen-to-square"
                           onClick={() => {
-                            setId(ele._id);
+                            setId(i._id);
                             setEdit(true);
                             setModalShow(true);
                           }}

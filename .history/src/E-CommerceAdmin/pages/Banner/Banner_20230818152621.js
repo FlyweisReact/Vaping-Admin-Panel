@@ -71,9 +71,10 @@ const Banner = () => {
     const getProducts = async () => {
       try {
         const res = await axios.get(
-          "https://krish-vapes-backend.vercel.app/api/v1/SubCategory/all/SubCategoryForAdmin"
+        "https://krish-vapes-backend.vercel.app/api/v1/SubCategory/all/SubCategoryForAdmin"
         );
         setSubData(res.data.data);
+        console.log(res.data.data)
       } catch {}
     };
 
@@ -174,14 +175,14 @@ const Banner = () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Select Sub-Category</Form.Label>
+              <Form.Label>Select Product</Form.Label>
               <Form.Control
                 as="select"
-                onChange={(e) => setSubCategory(e.target.value)}
+                onChange={(e) => setProductId(e.target.value)}
               >
-                <option>Select Sub-Category</option>
-                {subData?.map((i, index) => (
-                  <option value={i._id} key={index}>
+                <option value="">Select Product</option>
+                {products?.docs?.map((i, index) => (
+                  <option key={index} value={i._id}>
                     {" "}
                     {i.name}{" "}
                   </option>
@@ -257,7 +258,7 @@ const Banner = () => {
                       <th>Image</th>
                       <th>Name</th>
                       <th>Position</th>
-                      <th>Sub-Category</th>
+                      <th>Product</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -274,7 +275,7 @@ const Banner = () => {
                         </td>
                         <td>{i.bannerName} </td>
                         <td>{i.position}</td>
-                        <td>{i.subcategoryId?.name}</td>
+                        <td>{i.productId?.name}</td>
                         <td>
                           <span className="flexCont">
                             <i
@@ -305,7 +306,7 @@ const Banner = () => {
                         </td>
                         <td>{i.bannerName} </td>
                         <td>{i.position}</td>
-                        <td>{i.subcategoryId?.name}</td>
+                        <td>{i.productId?.name}</td>
                         <td>
                           <span className="flexCont">
                             <i
@@ -337,7 +338,7 @@ const Banner = () => {
                         </td>
                         <td>{i.bannerName} </td>
                         <td>{i.position}</td>
-                        <td>{i.subcategoryId?.name}</td>
+                        <td>{i.productId?.name}</td>
                         <td>
                           <span className="flexCont">
                             <i

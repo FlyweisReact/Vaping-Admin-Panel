@@ -28,7 +28,7 @@ const ESubCategory = () => {
   }, []);
 
   function MyVerticallyCenteredModal(props) {
-    const [name, setName] = useState(null);
+    const [name, setName] = useState("");
     const [categoryId, setCategoryId] = useState(null);
     const [category, setCategory] = useState([]);
 
@@ -225,7 +225,7 @@ const ESubCategory = () => {
                         <i
                           className="fa-solid fa-pen-to-square"
                           onClick={() => {
-                            setId(ele._id);
+                            setId(i._id);
                             setEdit(true);
                             setModalShow(true);
                           }}

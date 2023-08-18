@@ -10,9 +10,8 @@ const ESubCategory = () => {
   const token = localStorage.getItem("AdminToken");
   const [modalShow, setModalShow] = React.useState(false);
   const [subCat, setSubcat] = useState([]);
-  const [edit, setEdit] = useState(false);
-  const [id, setId] = useState("");
 
+  
   const getSubCategory = async () => {
     const url =
       "https://krish-vapes-backend.vercel.app/api/v1/SubCategory/all/SubCategoryForAdmin";
@@ -28,8 +27,9 @@ const ESubCategory = () => {
   }, []);
 
   function MyVerticallyCenteredModal(props) {
-    const [name, setName] = useState(null);
-    const [categoryId, setCategoryId] = useState(null);
+    const [name, setName] = useState("");
+    const [categoryId, setCategoryId] = useState("");
+
     const [category, setCategory] = useState([]);
 
     const getCategory = async () => {
@@ -71,29 +71,6 @@ const ESubCategory = () => {
       }
     };
 
-    const putHandler = async (e) => {
-      e.preventDefault();
-      const url = `https://krish-vapes-backend.vercel.app/api/v1/SubCategory/updateSubcategory/${id}`;
-      try {
-        const { data } = await axios.put(
-          url,
-          {
-            name,
-            categoryId,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-        toast.success(`Sub Category Edited Successfully`);
-        getSubCategory();
-        props.onHide();
-      } catch (err) {
-        const msg = err.response.data.message;
-        toast.error(msg);
-      }
-    };
-
     return (
       <Modal
         {...props}
@@ -104,11 +81,11 @@ const ESubCategory = () => {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             {" "}
-            {edit ? "Edit" : "Add"} Sub-Category
+            Add Sub-Category
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={edit ? putHandler : handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -182,7 +159,6 @@ const ESubCategory = () => {
           </span>
           <button
             onClick={() => {
-              setEdit(false);
               setModalShow(true);
             }}
             className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#0c0c0c] text-white tracking-wider"
@@ -221,20 +197,10 @@ const ESubCategory = () => {
                     <td>{ele?.name}</td>
                     <td>{ele?.categoryId?.name}</td>
                     <td>
-                      <span className="flexCont">
-                        <i
-                          className="fa-solid fa-pen-to-square"
-                          onClick={() => {
-                            setId(ele._id);
-                            setEdit(true);
-                            setModalShow(true);
-                          }}
-                        ></i>
-                        <i
-                          className="fa-solid fa-trash"
-                          onClick={() => deleteHandler(ele._id)}
-                        />
-                      </span>
+                      <i
+                        className="fa-solid fa-trash"
+                        onClick={() => deleteHandler(ele._id)}
+                      />
                     </td>
                   </tr>
                 ))}
