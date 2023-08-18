@@ -45,10 +45,10 @@ const EditProduct = () => {
       setCategoryName(res.data.data?.categoryId?.name);
       setSubCategoryId(res.data.data?.subcategoryId?._id)
       setSubCatName(res.data.data?.subcategoryId?.name)
+      stC
       console.log(res.data.data)
     } catch (e) {
       console.log(e);
-      
     }
   };
 
@@ -79,7 +79,6 @@ const EditProduct = () => {
     getProductDetail();
     getSubCategory();
   }, []);
-
 
   const ColorSelector = (colors) => {
     setColor((prev) => [...prev, colors]);

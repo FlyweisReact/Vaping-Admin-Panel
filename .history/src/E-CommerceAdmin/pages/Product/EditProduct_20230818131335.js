@@ -17,7 +17,7 @@ const EditProduct = () => {
   const [tax, setTax] = useState(0);
   const [discount, setDiscount] = useState(false);
   const [discountPrice, setDiscountPrice] = useState(0);
-  const [colorActive, setColorActive] = useState(false);
+  const [colorActive, setColorActive] = useState(null);
   const [size, setSize] = useState(null);
   const [color, setColor] = useState([]);
   const [colorName, setColorName] = useState("");
@@ -45,10 +45,12 @@ const EditProduct = () => {
       setCategoryName(res.data.data?.categoryId?.name);
       setSubCategoryId(res.data.data?.subcategoryId?._id)
       setSubCatName(res.data.data?.subcategoryId?.name)
+      const activeColorChecker = res.data.data.colorActive
+      setColorActive(activeColorChecker === true ? 'true' : "false")
+      setQuantity(res.data.data.)
       console.log(res.data.data)
     } catch (e) {
       console.log(e);
-      
     }
   };
 

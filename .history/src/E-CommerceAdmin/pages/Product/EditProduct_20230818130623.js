@@ -48,7 +48,6 @@ const EditProduct = () => {
       console.log(res.data.data)
     } catch (e) {
       console.log(e);
-      
     }
   };
 
@@ -79,7 +78,6 @@ const EditProduct = () => {
     getProductDetail();
     getSubCategory();
   }, []);
-
 
   const ColorSelector = (colors) => {
     setColor((prev) => [...prev, colors]);

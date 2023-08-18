@@ -28,8 +28,7 @@ const EditProduct = () => {
   const [quantityDigit, setQuantityDigit] = useState("");
   const [categoryData, setCategoryData] = useState([]);
   const [subCategoryData, setSubCategoryData] = useState([]);
-  const [categoryName, setCategoryName] = useState(null);
-  const [ subCatName , setSubCatName] = useState(null)
+  const [ categoryName , setCategoryName ] = useState(null)
 
   const getProductDetail = async () => {
     try {
@@ -41,14 +40,10 @@ const EditProduct = () => {
       setDiscountPrice(res.data.data.discountPrice);
       setPrice(res.data.data.price);
       setTax(res.data.data.tax);
-      setCategoryId(res.data.data?.categoryId?._id);
-      setCategoryName(res.data.data?.categoryId?.name);
-      setSubCategoryId(res.data.data?.subcategoryId?._id)
-      setSubCatName(res.data.data?.subcategoryId?.name)
-      console.log(res.data.data)
+      setCategoryId(res.data.data?.categoryId?._id)
+      setCategoryName(res.data.data?.categoryId._id)
     } catch (e) {
       console.log(e);
-      
     }
   };
 
@@ -80,6 +75,7 @@ const EditProduct = () => {
     getSubCategory();
   }, []);
 
+  console.log(categoryId)
 
   const ColorSelector = (colors) => {
     setColor((prev) => [...prev, colors]);
@@ -173,11 +169,6 @@ const EditProduct = () => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Previous Category</Form.Label>
-            <Form.Control type="text" defaultValue={categoryName} />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
             <Form.Label>Category</Form.Label>
             <Form.Select onChange={(e) => setCategoryId(e.target.value)}>
               <option>-- Select Category --</option>
@@ -187,11 +178,6 @@ const EditProduct = () => {
                 </option>
               ))}
             </Form.Select>
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Previous Sub-Category</Form.Label>
-            <Form.Control type="text" defaultValue={subCatName} />
           </Form.Group>
 
           <Form.Group className="mb-3">

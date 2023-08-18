@@ -45,10 +45,9 @@ const EditProduct = () => {
       setCategoryName(res.data.data?.categoryId?.name);
       setSubCategoryId(res.data.data?.subcategoryId?._id)
       setSubCatName(res.data.data?.subcategoryId?.name)
-      console.log(res.data.data)
+      console.log(res.data.data?.subcategoryId?._id)
     } catch (e) {
       console.log(e);
-      
     }
   };
 
@@ -79,7 +78,6 @@ const EditProduct = () => {
     getProductDetail();
     getSubCategory();
   }, []);
-
 
   const ColorSelector = (colors) => {
     setColor((prev) => [...prev, colors]);
@@ -191,7 +189,7 @@ const EditProduct = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Previous Sub-Category</Form.Label>
-            <Form.Control type="text" defaultValue={subCatName} />
+            <Form.Control type="text" defaultValue={categoryName} />
           </Form.Group>
 
           <Form.Group className="mb-3">
