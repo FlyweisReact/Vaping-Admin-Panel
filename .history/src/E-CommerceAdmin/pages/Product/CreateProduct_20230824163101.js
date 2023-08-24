@@ -1,18 +1,18 @@
 /** @format */
+
 import React, { useEffect, useState } from "react";
 import HOC from "../../layout/HOC";
-import { Link, useParams } from "react-router-dom";
-import { Form, Button, FloatingLabel ,Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const EditProduct = () => {
-  const { id } = useParams();
-  const [name, setName] = useState("");
+const CreateProduct = () => {
+  const [name, setName] = useState(null);
   const [categoryId, setCategoryId] = useState(null);
   const [subcategoryId, setSubCategoryId] = useState(null);
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState(null);
+  const [price, setPrice] = useState(null);
   const [taxInclude, setTaxInclude] = useState(false);
   const [tax, setTax] = useState(0);
   const [discount, setDiscount] = useState(false);
@@ -28,31 +28,8 @@ const EditProduct = () => {
   const [quantityDigit, setQuantityDigit] = useState("");
   const [categoryData, setCategoryData] = useState([]);
   const [subCategoryData, setSubCategoryData] = useState([]);
-  const [categoryName, setCategoryName] = useState(null);
-  const [ subCatName , setSubCatName] = useState(null)
-  const [costPrice, setCostPrice] = useState(0);
-  const [submitLoading, setSubmitLoading] = useState(false);
-
-  const getProductDetail = async () => {
-    try {
-      const res = await axios.get(
-        `https://krish-vapes-backend.vercel.app/api/v1/Product/${id}`
-      );
-      setName(res.data.data.name);
-      setDescription(res.data.data.description);
-      setCostPrice(res.data.data.costPrice);
-      setDiscountPrice(res.data.data.discountPrice);
-      setPrice(res.data.data.price);
-      setTax(res.data.data.tax);
-      setCategoryId(res.data.data?.categoryId?._id);
-      setCategoryName(res.data.data?.categoryId?.name); 
-      setSubCategoryId(res.data.data?.subcategoryId?._id)
-      setSubCatName(res.data.data?.subcategoryId?.name) 
-    } catch (e) {
-      console.log(e);
-      
-    }
-  };
+  const [ costPrice , setCostPrice ] = useState(0)
+  const [ submitLoading , setSubmitLoading ] = useState(false)
 
   const getCategory = async () => {
     try {
@@ -78,10 +55,8 @@ const EditProduct = () => {
 
   useEffect(() => {
     getCategory();
-    getProductDetail();
     getSubCategory();
   }, []);
-
 
   const ColorSelector = (colors) => {
     setColor((prev) => [...prev, colors]);
@@ -123,7 +98,6 @@ const EditProduct = () => {
 
   if (colorActive === "true") {
     if (size === "false") {
-      fd.append("size", size);
       Array.from(color).forEach((item) => {
         fd.append("color", item);
       });
@@ -147,40 +121,36 @@ const EditProduct = () => {
 
   const createProduct = async (e) => {
     e.preventDefault();
-    setSubmitLoading(true);
+    setSubmitLoading(true)
     try {
-      const res = await axios.put(
-        `https://krish-vapes-backend.vercel.app/api/v1/Product/editProduct/${id}`,
+      const res = await axios.post(
+        `https://krish-vapes-backend.vercel.app/api/v1/Product/addProduct`,
         fd,
         Auth
       );
       toast.success(res.data.message);
-      setSubmitLoading(false);
+      setSubmitLoading(false)
     } catch (e) {
       console.log(e);
       const msg = e.response.data.message;
       toast.error(msg);
-      setSubmitLoading(false);
+      setSubmitLoading(false)
     }
   };
 
+ 
+
   return (
     <section>
-      <p className="headP">Dashboard / Edit Product</p>
+      <p className="headP">Dashboard / Create New Product</p>
       <section className="sectionCont">
         <Form onSubmit={createProduct}>
           <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
             <Form.Control
               type="text"
-              value={name}
               onChange={(e) => setName(e.target.value)}
             />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Previous Category</Form.Label>
-            <Form.Control type="text" defaultValue={categoryName} />
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -193,11 +163,6 @@ const EditProduct = () => {
                 </option>
               ))}
             </Form.Select>
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Previous Sub-Category</Form.Label>
-            <Form.Control type="text" defaultValue={subCatName} />
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -218,7 +183,6 @@ const EditProduct = () => {
               <Form.Control
                 as="textarea"
                 style={{ height: "100px" }}
-                value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </FloatingLabel>
@@ -266,7 +230,6 @@ const EditProduct = () => {
                 type="number"
                 min={0}
                 step={0.01}
-                value={tax}
                 onChange={(e) => setTax(e.target.value)}
               />
             </Form.Group>
@@ -293,7 +256,6 @@ const EditProduct = () => {
                 type="number"
                 min={0}
                 step={0.01}
-                value={discountPrice}
                 onChange={(e) => setDiscountPrice(e.target.value)}
               />
             </Form.Group>
@@ -521,11 +483,10 @@ const EditProduct = () => {
 
           <div className="w-100 d-flex justify-content-between">
             <Button variant="success" type="submit">
-            {submitLoading ? (
-                <Spinner animation="border" role="status" />
-              ) : (
-                "Submit"
-              )}
+            {submitLoading ?  <Spinner animation="border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner> : "Submit"}
+              Submit
             </Button>
 
             <Link to="/Orders">
@@ -538,4 +499,4 @@ const EditProduct = () => {
   );
 };
 
-export default HOC(EditProduct);
+export default HOC(CreateProduct);

@@ -29,6 +29,7 @@ const Product = () => {
       );
       setData(data.data);
       setTotal(data.data.total);
+      console.log(data.data)
     } catch (e) {
       console.log(e);
     }
@@ -125,9 +126,8 @@ const Product = () => {
                       <th>Cost Price</th>
                       <th>Total Stock</th>
                       <th>Category</th>
-                      <th>VAT</th>
-                      <th>VAT % </th>
-                      <th>Margin</th>
+                      <th>Category</th>
+                      <th>Category</th>
                       <th> Options </th>
                     </tr>
                   </thead>
@@ -153,9 +153,7 @@ const Product = () => {
                           )}
                         </td>
                         <td>{i.categoryId?.name}</td>
-                        <td> {i.taxInclude === false ? "No" : "Yes"} </td>
-                        <td> {i.taxInclude === false ? `${i.tax}%` : ""} </td>
-                        <td> {i.marginPrice} </td>
+
                         <td>
                           <span className="flexCont">
                             <Link to={`/edit-product/${i._id}`}>

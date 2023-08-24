@@ -40,12 +40,11 @@ const EditProduct = () => {
       );
       setName(res.data.data.name);
       setDescription(res.data.data.description);
-      setCostPrice(res.data.data.costPrice);
       setDiscountPrice(res.data.data.discountPrice);
       setPrice(res.data.data.price);
       setTax(res.data.data.tax);
       setCategoryId(res.data.data?.categoryId?._id);
-      setCategoryName(res.data.data?.categoryId?.name); 
+      setCategoryName(res.data.data?.categoryId?.name);
       setSubCategoryId(res.data.data?.subcategoryId?._id)
       setSubCatName(res.data.data?.subcategoryId?.name) 
     } catch (e) {

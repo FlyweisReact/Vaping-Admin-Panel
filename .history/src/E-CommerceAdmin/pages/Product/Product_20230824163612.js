@@ -125,9 +125,6 @@ const Product = () => {
                       <th>Cost Price</th>
                       <th>Total Stock</th>
                       <th>Category</th>
-                      <th>VAT</th>
-                      <th>VAT % </th>
-                      <th>Margin</th>
                       <th> Options </th>
                     </tr>
                   </thead>
@@ -143,6 +140,7 @@ const Product = () => {
 
                         <td> {i.name} </td>
                         <td> £{i.price} </td>
+                       
                         <td>£{i.discountPrice}</td>
                         <td> {i.costPrice ? `£${i.costPrice}` : ""} </td>
                         <td>
@@ -153,9 +151,7 @@ const Product = () => {
                           )}
                         </td>
                         <td>{i.categoryId?.name}</td>
-                        <td> {i.taxInclude === false ? "No" : "Yes"} </td>
-                        <td> {i.taxInclude === false ? `${i.tax}%` : ""} </td>
-                        <td> {i.marginPrice} </td>
+
                         <td>
                           <span className="flexCont">
                             <Link to={`/edit-product/${i._id}`}>

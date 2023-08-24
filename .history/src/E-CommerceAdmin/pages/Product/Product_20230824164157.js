@@ -29,6 +29,7 @@ const Product = () => {
       );
       setData(data.data);
       setTotal(data.data.total);
+      console.log(data.data)
     } catch (e) {
       console.log(e);
     }

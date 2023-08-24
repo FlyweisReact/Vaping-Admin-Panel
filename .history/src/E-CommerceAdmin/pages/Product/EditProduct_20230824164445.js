@@ -40,14 +40,14 @@ const EditProduct = () => {
       );
       setName(res.data.data.name);
       setDescription(res.data.data.description);
-      setCostPrice(res.data.data.costPrice);
       setDiscountPrice(res.data.data.discountPrice);
       setPrice(res.data.data.price);
       setTax(res.data.data.tax);
       setCategoryId(res.data.data?.categoryId?._id);
-      setCategoryName(res.data.data?.categoryId?.name); 
+      setCategoryName(res.data.data?.categoryId?.name);
       setSubCategoryId(res.data.data?.subcategoryId?._id)
-      setSubCatName(res.data.data?.subcategoryId?.name) 
+      setSubCatName(res.data.data?.subcategoryId?.name)
+      console.log(res.data.data)
     } catch (e) {
       console.log(e);
       
@@ -155,12 +155,10 @@ const EditProduct = () => {
         Auth
       );
       toast.success(res.data.message);
-      setSubmitLoading(false);
     } catch (e) {
       console.log(e);
       const msg = e.response.data.message;
       toast.error(msg);
-      setSubmitLoading(false);
     }
   };
 
@@ -225,25 +223,13 @@ const EditProduct = () => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Selling Price</Form.Label>
+            <Form.Label>Price</Form.Label>
             <Form.Control
               type="number"
-              step={0.01}
               min={0}
-              onChange={(e) => {
-                setPrice(e.target.value);
-              }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Cost Price</Form.Label>
-            <Form.Control
-              type="number"
               step={0.01}
-              min={0}
-              onChange={(e) => {
-                setCostPrice(e.target.value);
-              }}
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
             />
           </Form.Group>
 
@@ -521,11 +507,7 @@ const EditProduct = () => {
 
           <div className="w-100 d-flex justify-content-between">
             <Button variant="success" type="submit">
-            {submitLoading ? (
-                <Spinner animation="border" role="status" />
-              ) : (
-                "Submit"
-              )}
+              Submit
             </Button>
 
             <Link to="/Orders">

@@ -29,6 +29,7 @@ const Product = () => {
       );
       setData(data.data);
       setTotal(data.data.total);
+      console.log(data.data)
     } catch (e) {
       console.log(e);
     }
@@ -155,7 +156,7 @@ const Product = () => {
                         <td>{i.categoryId?.name}</td>
                         <td> {i.taxInclude === false ? "No" : "Yes"} </td>
                         <td> {i.taxInclude === false ? `${i.tax}%` : ""} </td>
-                        <td> {i.marginPrice} </td>
+                        <td> {i.} </td>
                         <td>
                           <span className="flexCont">
                             <Link to={`/edit-product/${i._id}`}>

@@ -40,7 +40,7 @@ const EditProduct = () => {
       );
       setName(res.data.data.name);
       setDescription(res.data.data.description);
-      setCostPrice(res.data.data.costPrice);
+      setDescription(res.data.data.description);
       setDiscountPrice(res.data.data.discountPrice);
       setPrice(res.data.data.price);
       setTax(res.data.data.tax);
