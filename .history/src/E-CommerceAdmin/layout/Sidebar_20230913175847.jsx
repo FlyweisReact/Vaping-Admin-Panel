@@ -87,7 +87,7 @@ const Sidebar = ({ hamb, setHamb }) => {
         <i className="fa-solid fa-user  text-xl mr-3 rounded-full"></i>
       ),
       link: "/ad",
-      name: "Ad Screen",
+      name: "All Blogs",
     }
   ];
 
