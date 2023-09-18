@@ -27,6 +27,7 @@ const Product = () => {
       const { data } = await axios.get(
         `https://krish-vapes-backend.vercel.app/api/v1/Product/all/paginateProductSearch?page=${page}&limit=10&search=${query}`
       );
+      console.log(data)
       setData(data.data);
       setTotal(data.data.total);
     } catch (e) {
@@ -128,6 +129,7 @@ const Product = () => {
                       <th>VAT</th>
                       <th>VAT % </th>
                       <th>Margin</th>
+                      <th>Discount</th>
                       <th> Options </th>
                     </tr>
                   </thead>
@@ -154,8 +156,9 @@ const Product = () => {
                         </td>
                         <td>{i.categoryId?.name}</td>
                         <td> {i.taxInclude === false ? "No" : "Yes"} </td>
-                        <td> {i.taxInclude === false ? `${i.tax}%` : ""} </td>
+                        <td> {i.tax} </td>
                         <td> {i.marginPrice} </td>
+                        <td> {i.discount === true ? "Applied" : "Not Applied"} </td>
                         <td>
                           <span className="flexCont">
                             <Link to={`/edit-product/${i._id}`}>

@@ -2,32 +2,32 @@
 
 import React, { useEffect, useState } from "react";
 import HOC from "../../layout/HOC";
-import {
-  Table,
-  Modal,
-  Form,
-  Button,
-  Badge,
-  Alert,
-} from "react-bootstrap";
+import { Table, Badge, Alert } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import axios from "axios";
 import SpinnerComp from "../Component/SpinnerComp";
+import { Link } from "react-router-dom";
 
 const Product = () => {
-  const [modalShow, setModalShow] = React.useState(false);
-  const [modalShow2, setModalShow2] = useState(false);
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
+
+  const token = localStorage.getItem("AdminToken");
+  const Auth = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
         `https://krish-vapes-backend.vercel.app/api/v1/Product/all/paginateProductSearch?page=${page}&limit=10&search=${query}`
       );
+      console.log(data)
       setData(data.data);
       setTotal(data.data.total);
     } catch (e) {
@@ -57,75 +57,22 @@ const Product = () => {
     fetchData();
   }, [page, query]);
 
-  function MyVerticallyCenteredModal(props) {
-
- 
-
-    return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            {" "}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-       
-        </Modal.Body>
-      </Modal>
-    );
-  }
-
-  function MyVerticallyCenteredModal2(props) {
-   
-    return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            {" "}
-            Product{" "}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-       
-        </Modal.Body>
-      </Modal>
-    );
-  }
-
   const deleteHandler = async (id) => {
     try {
       const { data } = await axios.delete(
-        `http://ec2-65-1-248-95.ap-south-1.compute.amazonaws.com:8886/api/product/${id}`
+        `https://krish-vapes-backend.vercel.app/api/v1/Product/deleteProduct/${id}`,
+        Auth
       );
-      console.log(data);
+      toast.success(data.message);
       fetchData();
-      toast.success("Product Deleted SuccessFully");
     } catch (e) {
-      console.log(e);
+      const msg = e.response.data.message;
+      toast.error(msg);
     }
   };
 
   return (
     <>
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
-      <MyVerticallyCenteredModal2
-        show={modalShow2}
-        onHide={() => setModalShow2(false)}
-      />
-
       <p className="headP">Dashboard / Products</p>
 
       <div
@@ -139,15 +86,11 @@ const Product = () => {
           All Product's ( Total : {total} )
         </span>
         <div className="d-flex gap-1">
-          <button
-              onClick={() => {
-                setEdit(false);
-                setModalShow(true);
-              }}
-              className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#19376d] text-white tracking-wider"
-            >
-              Add Product
+          <Link to="/create-product">
+            <button className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#19376d] text-white tracking-wider">
+              Create Product
             </button>
+          </Link>
         </div>
       </div>
 
@@ -180,8 +123,12 @@ const Product = () => {
                       <th>Title</th>
                       <th>MRP</th>
                       <th>Selling Price</th>
+                      <th>Cost Price</th>
                       <th>Total Stock</th>
                       <th>Category</th>
+                      <th>VAT</th>
+                      <th>VAT % </th>
+                      <th>Margin</th>
                       <th> Options </th>
                     </tr>
                   </thead>
@@ -198,6 +145,7 @@ const Product = () => {
                         <td> {i.name} </td>
                         <td> £{i.price} </td>
                         <td>£{i.discountPrice}</td>
+                        <td> {i.costPrice ? `£${i.costPrice}` : ""} </td>
                         <td>
                           {i.quantity >= 10 ? (
                             <Badge bg="success">{i.quantity} In Stock</Badge>
@@ -206,29 +154,22 @@ const Product = () => {
                           )}
                         </td>
                         <td>{i.categoryId?.name}</td>
-
+                        <td> {i.taxInclude === false ? "No" : "Yes"} </td>
+                        <td> {i.tax} </td>
+                        <td> {i.marginPrice} </td>
                         <td>
-                          {/* <span className="flexCont">
-                              <i
-                                className="fa-solid fa-pen-to-square"
-                                onClick={() => {
-                                  setBigId(i._id);
-                                  setEdit(true);
-                                  setModalShow(true);
-                                }}
-                              ></i>
-                              <i
-                                className="fa-solid fa-eye"
-                                onClick={() => {
-                                  setId(i._id);
-                                  setModalShow2(true);
-                                }}
-                              ></i>
-                              <i
-                                className="fa-sharp fa-solid fa-trash"
-                                onClick={() => deleteHandler(i._id)}
-                              ></i>
-                            </span> */}
+                          <span className="flexCont">
+                            <Link to={`/edit-product/${i._id}`}>
+                              <i className="fa-solid fa-pen-to-square" />
+                            </Link>
+                            <Link to={`/product/${i._id}`}>
+                              <i className="fa-solid fa-eye" />
+                            </Link>
+                            <i
+                              className="fa-sharp fa-solid fa-trash"
+                              onClick={() => deleteHandler(i._id)}
+                            ></i>
+                          </span>
                         </td>
                       </tr>
                     ))}
@@ -240,6 +181,8 @@ const Product = () => {
                 <button onClick={() => Prev()} className="prevBtn">
                   <i className="fa-solid fa-backward"></i>
                 </button>
+
+                <button className="activePage">{page}</button>
 
                 <button onClick={() => Next()} className="nextBtn">
                   {" "}

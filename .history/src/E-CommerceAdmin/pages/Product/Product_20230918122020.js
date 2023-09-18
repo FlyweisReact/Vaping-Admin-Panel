@@ -27,6 +27,7 @@ const Product = () => {
       const { data } = await axios.get(
         `https://krish-vapes-backend.vercel.app/api/v1/Product/all/paginateProductSearch?page=${page}&limit=10&search=${query}`
       );
+      console.log(data)
       setData(data.data);
       setTotal(data.data.total);
     } catch (e) {
@@ -59,7 +60,8 @@ const Product = () => {
   const deleteHandler = async (id) => {
     try {
       const { data } = await axios.delete(
-        `https://krish-vapes-backend.vercel.app/api/v1/Product/deleteProduct/${id}`
+        `https://krish-vapes-backend.vercel.app/api/v1/Product/deleteProduct/${id}`,
+        Auth
       );
       toast.success(data.message);
       fetchData();
@@ -86,7 +88,7 @@ const Product = () => {
         <div className="d-flex gap-1">
           <Link to="/create-product">
             <button className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#19376d] text-white tracking-wider">
-              Add Product
+              Create Product
             </button>
           </Link>
         </div>
@@ -121,8 +123,13 @@ const Product = () => {
                       <th>Title</th>
                       <th>MRP</th>
                       <th>Selling Price</th>
+                      <th>Cost Price</th>
                       <th>Total Stock</th>
                       <th>Category</th>
+                      <th>VAT</th>
+                      <th>VAT % </th>
+                      <th>Margin</th>
+                      <th>Discount</th>
                       <th> Options </th>
                     </tr>
                   </thead>
@@ -139,6 +146,7 @@ const Product = () => {
                         <td> {i.name} </td>
                         <td> £{i.price} </td>
                         <td>£{i.discountPrice}</td>
+                        <td> {i.costPrice ? `£${i.costPrice}` : ""} </td>
                         <td>
                           {i.quantity >= 10 ? (
                             <Badge bg="success">{i.quantity} In Stock</Badge>
@@ -147,24 +155,18 @@ const Product = () => {
                           )}
                         </td>
                         <td>{i.categoryId?.name}</td>
-
+                        <td> {i.taxInclude === false ? "No" : "Yes"} </td>
+                        <td> {i.tax} </td>
+                        <td> {i.marginPrice} </td>
+                        
                         <td>
                           <span className="flexCont">
-                            {/* <i
-                                className="fa-solid fa-pen-to-square"
-                                onClick={() => {
-                                  setBigId(i._id);
-                                  setEdit(true);
-                                  setModalShow(true);
-                                }}
-                              ></i>
-                              <i
-                                className="fa-solid fa-eye"
-                                onClick={() => {
-                                  setId(i._id);
-                                  setModalShow2(true);
-                                }}
-                              ></i> */}
+                            <Link to={`/edit-product/${i._id}`}>
+                              <i className="fa-solid fa-pen-to-square" />
+                            </Link>
+                            <Link to={`/product/${i._id}`}>
+                              <i className="fa-solid fa-eye" />
+                            </Link>
                             <i
                               className="fa-sharp fa-solid fa-trash"
                               onClick={() => deleteHandler(i._id)}
@@ -181,6 +183,8 @@ const Product = () => {
                 <button onClick={() => Prev()} className="prevBtn">
                   <i className="fa-solid fa-backward"></i>
                 </button>
+
+                <button className="activePage">{page}</button>
 
                 <button onClick={() => Next()} className="nextBtn">
                   {" "}
